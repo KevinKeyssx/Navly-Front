@@ -87,9 +87,9 @@
 
         <div class="absolute inset-0 flex justify-between pl-4 py-2">
             <div class="items-start">
-                <h2 class="text-md">Skeleton</h2>
+                <h2 class="text-sm">Skeleton</h2>
 
-                <p class="text-[12px] text-white font-semibold">
+                <p class="text-[11px] text-white ">
                     Lorem ipsum dolor sit amet consectetur adipisicing .
                 </p>
             </div>
@@ -137,8 +137,8 @@
             www.skeleton.com
         </a>
 
-        <p class="text-[14px] text-cyan-600 font-semibold mt-5">
-            La mejor web de por aquí paraver acepta un texto largo
+        <p class="text-[12px] text-cyan-600 font-semibold mt-5">
+            La mejor web de por aquí para ver acepta un texto largo
         </p>
     </section>
 
@@ -163,10 +163,17 @@
             </svelte:fragment>
         </Ratings>
 
-        <div class="flex gap-2 items-center">
-            <span class="text-[14px] font-extralight text-cyan-500">
-                2
-            </span> 
+        <!-- 1 length w-14 -->
+        <!-- 2 length w-20 -->
+        <!-- 3 length w-24 -->
+        <!-- 4 length w-28 -->
+        <!-- 5 length w-32 -->
+        <div class="flex gap-1 items-center variant-ghost-primary rounded-2xl w-[5.2rem] justify-between pl-2 pr-2">
+        <!-- <div class="flex gap-1.5 items-center"> -->
+            <!-- <span class="text-[12px] font-extralight text-red-500"> -->
+            <span class="text-[12px] font-semibold text-cyan-500">
+                100
+            </span>
 
             <img
                 src = "/icons/view.apng"
