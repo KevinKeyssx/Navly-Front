@@ -31,7 +31,7 @@
 
 <Aura/>
 
-<AppShell>
+<AppShell class="relative">
 	<svelte:fragment slot="header">
 		<AppBar class="lg:px-10">
 			<svelte:fragment slot="lead">
