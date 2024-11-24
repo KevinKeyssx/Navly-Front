@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { RadioGroup, RadioItem } 	from "@skeletonlabs/skeleton";
-	import Navigator 					from "../components/Navigator.svelte";
+	import { Accordion, AccordionItem, RadioGroup, RadioItem } from "@skeletonlabs/skeleton";
+	import Links from "../../components/Links.svelte";
 
 	let value: number = 0;
 </script>
 
+<div class="container mx-auto mt-5">
 
-<div class="container mx-auto mt-5 px-2 2xl:px-0">
 	<div class="flex items-center gap-3 mb-3">
 		<input
 			class		= "input text-sm variant-ghost-primary"
@@ -66,74 +66,47 @@
 		</RadioGroup>
 	</div>
 
-	<nav class="list-nav">
-		<ul>
-			<li class="variant-glass-primary rounded-full card-hover">
-				<a href="/sites">
-					<img
-						src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
-						alt		= "img"
-						class	= "rounded-full w-8 h-8"
-					>
-					<span class="flex-auto">Skeleton</span>
-				</a>
-			</li>
-			<li class="variant-glass-tertiary rounded-full card-hover">
-				<a href="/sites">
-					<img
-						src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
-						alt		= "img"
-						class	= "rounded-full w-8 h-8"
-					>
-					<span class="flex-auto">Skeleton</span>
-				</a>
-			</li>
-			<li class="variant-glass-primary rounded-full card-hover">
-				<a href="/sites">
-					<img
-						src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
-						alt		= "img"
-						class	= "rounded-full w-8 h-8"
-					>
-					<span class="flex-auto">Skeleton</span>
-				</a>
-			</li>
-			<li class="variant-glass-tertiary rounded-full card-hover">
-				<a href="/sites">
-					<img
-						src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
-						alt		= "img"
-						class	= "rounded-full w-8 h-8"
-					>
-					<span class="flex-auto">Skeleton</span>
-				</a>
-			</li>
-			<li class="variant-glass-primary rounded-full card-hover">
-				<a href="/sites">
-					<img
-						src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
-						alt		= "img"
-						class	= "rounded-full w-8 h-8"
-					>
-					<span class="flex-auto">Skeleton</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
 
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 sm:gap-3 md:gap-4 lg:gap-5">
+	<Accordion>
+		<AccordionItem open regionControl="variant-soft-primary" rounded="rounded-full">
+			<!-- <svelte:fragment slot="lead">(icon)</svelte:fragment> -->
+			<svelte:fragment slot="summary">Algo así se llama</svelte:fragment>
+			<svelte:fragment slot="content">
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 sm:gap-3 md:gap-4 lg:gap-5 px-2 2xl:px-0">
+					{#each [1,2,3,4,6] as index, i }
+						<Links
+							url={"https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin"}
+							target= {`target-${i}`}
+						/>
+					{/each}
 
-		{#each [1,2,3,4,6] as index}
-			<Navigator
-				url		= {'https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif'}
-				name	= 'Navly'
-			/>
-		{/each}
+					<div class="card card_zoom h-auto variant-soft-primary flex justify-center items-center border-2 border-dotted border-sky-700">
+						<div class="text-blue-500 text-3xl">
+							<img src="/icons/plus-60.apng" alt="add">
+						</div>
+					</div>
+				</div>
+			</svelte:fragment>
+		</AccordionItem>
+	
+		<AccordionItem open regionControl="variant-soft-primary" rounded="rounded-full">
+			<svelte:fragment slot="summary">Otro Sitio</svelte:fragment>
+			<svelte:fragment slot="content">
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 sm:gap-3 md:gap-4 lg:gap-5 px-2 2xl:px-0">
+					{#each [1,2,3,4] as index, i }
+						<Links
+							url={"https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin"}
+							target= {`target-${i}`}
+						/>
+					{/each}
 
-		<div class="card card_zoom h-64 variant-soft-primary flex justify-center items-center border-2 border-dotted border-sky-700">
-			<div class="text-blue-500 text-3xl">
-				<img src="/icons/plus-60.apng" alt="add">
-			</div>
-		</div>
-	</div>
+					<div class="card card_zoom h-auto variant-soft-primary flex justify-center items-center border-2 border-dotted border-sky-700">
+						<div class="text-blue-500 text-3xl">
+							<img src="/icons/plus-60.apng" alt="add">
+						</div>
+					</div>
+				</div>
+			</svelte:fragment>
+		</AccordionItem>
+	</Accordion>
 </div>

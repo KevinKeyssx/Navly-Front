@@ -14,8 +14,8 @@
     import StartEmptyIcon   from "../icons/StartEmptyIcon.svelte";
     import StarHalfIcon     from "../icons/StarHalfIcon.svelte";
     import Previewer        from "./Previewer.svelte";
-  import HeartFullIcon from "../icons/HeartFullIcon.svelte";
-  import HeartEmptyIcon from "../icons/HeartEmptyIcon.svelte";
+    import HeartFullIcon    from "../icons/HeartFullIcon.svelte";
+    import HeartEmptyIcon   from "../icons/HeartEmptyIcon.svelte";
 
 
     export let url      : string;
@@ -35,47 +35,14 @@
     };
 
 
-// export const GET = async ( {
-//     request
-// } : {
-//     request: Request
-// } ): Promise<Response | undefined> => {
-//     const {url}     = request;
-
-//     console.log("🚀 ~ url:", url)
-//     const realUrl = url.split('=')[1];
-//     console.log("🚀 ~ realUrl:", realUrl)
-
-//     try {
-        
-//         const { result }    = await ogs({ url: realUrl });
-//         console.log("🚀 ~ result:", result)
-//         const body          = JSON.stringify({ result, status: 200 });
-//         console.log("🚀 ~ body:", body)
-//         return new Response( body, { status: 200 });
-//     } catch (error) {
-//         console.log("🚀 ~ error:", error)
-//         return undefined;
-//     }
-
-// };
-
     async function takePickture() {
         const res = await fetch( '/api/preview?url=https://www.netflix.com/watch/80104965?trackId=14207189&tctx=1%2C1%2Cebf9da2c-2068-45a7-90be-d11e71cb859b-298038227%2CNES_A13D4A0E8B1AA52D3E8D5B461E2E71-B4275BC75BB99D-D449A64DA3_p_1731635230699%2C%2C%2C%2C%2C%2CVideo%3A70024218%2CdetailsPagePlayButton' );
         console.log( "🚀 ~ ********res:", await  res.json())
-
     }
 
 </script>
 
-<style>
-    .card_:hover {
-        transform   : scale( 1.05 );
-        transition  : transform 0.3s cubic-bezier( 0.175, 0.885, 0.32, 1.275 );
-    }
-</style>
-
-<div class="card card_ z-0 variant-soft-primary">
+<div class="card card_zoom z-0 variant-soft-primary">
     <header class="card-header relative p-0">
         <img
             class   = "h-auto max-w-full rounded-t-lg object-cover z-0"
@@ -181,13 +148,11 @@
             />
         </div>
 
-
         <!-- <button
             class="btn btn-sm variant-ghost-primary"
             on:click={takePickture}
         >
             Rew
-
         </button> -->
     </footer>
 </div>

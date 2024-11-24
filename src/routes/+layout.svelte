@@ -17,7 +17,8 @@
 		storePopup
 	} from '@skeletonlabs/skeleton';
 
-	import Aura from '../components/Aura.svelte';
+	import Aura 	from '../components/Aura.svelte';
+	import Footer 	from '../components/Footer.svelte';
 
 	storePopup.set({
 		computePosition,
@@ -31,16 +32,19 @@
 
 <Aura/>
 
-<AppShell class="relative">
+<AppShell class="relative min-h-screen">
 	<svelte:fragment slot="header">
 		<AppBar class="lg:px-10">
 			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">Navly</strong>
+				<a href="/">
+					<strong class="text-xl uppercase">Navly</strong>
+				</a>
 			</svelte:fragment>
 
 			<svelte:fragment slot="trail">
-				<div class=" pl-4 flex border border-1 border-gray-600 w-48 h-10  justify-between items-center rounded-full">
+				<div class=" pl-4 flex border border-1 border-gray-600 w-48 h-10 justify-between items-center rounded-full">
 					<h2 class="text-sky-500 ">Kevin Candia</h2>
+
 					<Avatar
 						src			= "https://i.pravatar.cc/"
 						initials	= "KC"
@@ -53,6 +57,9 @@
 		</AppBar>
 	</svelte:fragment>
 
-	<slot />
+	<div class="flex-grow">
+		<slot />
+	</div>
 
+	<Footer />
 </AppShell>
