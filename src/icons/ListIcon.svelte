@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24" {...$$props}>
+    <g fill="#3660b2" fill-opacity="0" stroke="#3660b2" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke-dasharray="12" stroke-dashoffset="12" d="M3.5 5c0 -0.83 0.67 -1.5 1.5 -1.5c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5c-0.83 0 -1.5 -0.67 -1.5 -1.5Z">
+            <animate fill="freeze" attributeName="fill-opacity" begin="1.7s" dur="0.15s" values="0;0.3" />
+            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="12;0" />
+        </path>
+        <path stroke-dasharray="12" stroke-dashoffset="12" d="M3.5 12c0 -0.83 0.67 -1.5 1.5 -1.5c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5c-0.83 0 -1.5 -0.67 -1.5 -1.5Z">
+            <animate fill="freeze" attributeName="fill-opacity" begin="2.3s" dur="0.15s" values="0;0.3" />
+            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="12;0" />
+        </path>
+        <path stroke-dasharray="12" stroke-dashoffset="12" d="M3.5 19c0 -0.83 0.67 -1.5 1.5 -1.5c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5c-0.83 0 -1.5 -0.67 -1.5 -1.5Z">
+            <animate fill="freeze" attributeName="fill-opacity" begin="2.9s" dur="0.15s" values="0;0.3" />
+            <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.2s" dur="0.2s" values="12;0" />
+        </path>
+        <path stroke-dasharray="28" stroke-dashoffset="28" d="M9.5 5c0 -0.83 0.67 -1.5 1.5 -1.5h8c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5h-8c-0.83 0 -1.5 -0.67 -1.5 -1.5Z">
+            <animate fill="freeze" attributeName="fill-opacity" begin="1.9s" dur="0.15s" values="0;0.3" />
+            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.4s" values="28;0" />
+        </path>
+        <path stroke-dasharray="28" stroke-dashoffset="28" d="M9.5 12c0 -0.83 0.67 -1.5 1.5 -1.5h8c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5h-8c-0.83 0 -1.5 -0.67 -1.5 -1.5Z">
+            <animate fill="freeze" attributeName="fill-opacity" begin="2.5s" dur="0.15s" values="0;0.3" />
+            <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.4s" values="28;0" />
+        </path>
+        <path stroke-dasharray="28" stroke-dashoffset="28" d="M9.5 19c0 -0.83 0.67 -1.5 1.5 -1.5h8c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5h-8c-0.83 0 -1.5 -0.67 -1.5 -1.5Z">
+            <animate fill="freeze" attributeName="fill-opacity" begin="3.1s" dur="0.15s" values="0;0.3" />
+            <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.4s" dur="0.4s" values="28;0" />
+        </path>
+    </g>
+</svg>

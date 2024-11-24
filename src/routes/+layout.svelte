@@ -32,7 +32,7 @@
 
 <Aura/>
 
-<AppShell class="relative min-h-screen">
+<AppShell class="relative">
 	<svelte:fragment slot="header">
 		<AppBar class="lg:px-10">
 			<svelte:fragment slot="lead">
@@ -57,9 +57,8 @@
 		</AppBar>
 	</svelte:fragment>
 
-	<div class="flex-grow">
-		<slot />
-	</div>
+	<slot />
 
 	<Footer />
+
 </AppShell>
