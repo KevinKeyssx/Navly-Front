@@ -11,8 +11,6 @@
 	} from '@floating-ui/dom';
 
 	import {
-		AppShell,
-		AppBar,
 		Avatar,
 		storePopup
 	} from '@skeletonlabs/skeleton';
@@ -30,35 +28,33 @@
 	});
 </script>
 
-<Aura/>
 
-<AppShell class="relative">
-	<svelte:fragment slot="header">
-		<AppBar class="lg:px-10">
-			<svelte:fragment slot="lead">
-				<a href="/">
-					<strong class="text-xl uppercase">Navly</strong>
-				</a>
-			</svelte:fragment>
+<div class="flex flex-col min-h-screen overflow-auto">
+	<Aura />
 
-			<svelte:fragment slot="trail">
-				<div class=" pl-4 flex border border-1 border-gray-600 w-48 h-10 justify-between items-center rounded-full">
-					<h2 class="text-sky-500 ">Kevin Candia</h2>
+	<header class="bg-gray-800 text-white p-3">
+		<!-- <div class=" flex justify-between items-center px-52"> -->
+		<div class="container mx-auto flex justify-between items-center">
+			<a href="/" class="text-xl uppercase font-bold">Navly</a>
 
-					<Avatar
-						src			= "https://i.pravatar.cc/"
-						initials	= "KC"
-						border		= "border-2 border-surface-300-600-token hover:!border-primary-500"
-						cursor		= "cursor-pointer"
-						width		= "w-10"
-					/>
-				</div>
-			</svelte:fragment>
-		</AppBar>
-	</svelte:fragment>
+			<div class=" pl-4 flex border border-1 border-gray-600 w-48 h-10 justify-between items-center rounded-full">
+				<h2 class="text-sky-500 ">Kevin Candia</h2>
 
-	<slot />
+				<Avatar
+					src			= "https://i.pravatar.cc/"
+					initials	= "KC"
+					border		= "border-2 border-surface-300-600-token hover:!border-primary-500"
+					cursor		= "cursor-pointer"
+					width		= "w-10"
+				/>
+			</div>
+		</div>
+	</header>
+
+	<main class="flex-1 container mx-auto mt-5">
+	<!-- <main class="flex-1 px-52 mt-5"> -->
+		<slot />
+	</main>
 
 	<Footer />
-
-</AppShell>
+</div>

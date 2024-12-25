@@ -39,10 +39,16 @@
         const res = await fetch( '/api/preview?url=https://www.netflix.com/watch/80104965?trackId=14207189&tctx=1%2C1%2Cebf9da2c-2068-45a7-90be-d11e71cb859b-298038227%2CNES_A13D4A0E8B1AA52D3E8D5B461E2E71-B4275BC75BB99D-D449A64DA3_p_1731635230699%2C%2C%2C%2C%2C%2CVideo%3A70024218%2CdetailsPagePlayButton' );
         console.log( "🚀 ~ ********res:", await  res.json())
     }
-
 </script>
 
-<div class="card card_zoom z-0 variant-soft-primary">
+
+<a
+    href    = "https://www.skeleton.dev"
+    target  = {'_blank'}
+    class   = "card card_zoom z-0 variant-soft-primary cursor-pointer"
+>
+
+<!-- <div class="card card_zoom z-0 variant-soft-primary cursor-pointer"> -->
     <header class="card-header relative p-0">
         <img
             class   = "h-auto max-w-full rounded-t-lg object-cover z-0"
@@ -92,7 +98,17 @@
     </header>
 
     <section class="px-4 py-2 text-sm space-y-1">
-        <a
+        <div
+            class="text-[13px] font-semibold underline flex items-center gap-2"
+        >
+            <img
+                src = "/icons/link.apng"
+                alt = "link"
+            />
+
+            www.skeleton.com
+        </div>
+        <!-- <a
             href    = "https://www.skeleton.dev"
             target  = {'_blank'}
             class   = "text-[12px] font-semibold underline flex items-center gap-2"
@@ -102,9 +118,9 @@
                 alt = "link"
             />
             www.skeleton.com
-        </a>
+        </a> -->
 
-        <p class="text-[12px] text-cyan-600 font-semibold mt-5">
+        <p class="text-[13px] text-cyan-600 font-semibold mt-5">
             La mejor web de por aquí para ver acepta un texto largo
         </p>
     </section>
@@ -155,4 +171,5 @@
             Rew
         </button> -->
     </footer>
-</div>
+<!-- </div> -->
+</a>

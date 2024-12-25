@@ -1,4 +1,4 @@
-<figure class="aura-center">
+<figure class="aura-center absolute inset-0 -z-10">
     <section class="img-bg"></section>
     <svg
         class="fill-token -scale-x-[100%]"

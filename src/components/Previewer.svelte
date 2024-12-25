@@ -10,10 +10,13 @@
         isLoading = false;
         console.log('TERMINO de cargar')
     }
-
 </script>
 
-<div class="card z-50 mr-2 w-80 h-[21rem] variant-glass-primary shadow-lg overflow-hidden" data-popup={target}>
+
+<div
+    class       = "card z-50 mr-2 w-80 h-[21rem] variant-glass-primary shadow-lg overflow-hidden"
+    data-popup  = {target}
+>
     {#if isLoading}
         <div class="flex items-center justify-center w-full h-full">
             <Loader/>
