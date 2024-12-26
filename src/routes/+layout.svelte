@@ -17,6 +17,7 @@
 
 	import Aura 	from '../components/Aura.svelte';
 	import Footer 	from '../components/Footer.svelte';
+	import Snow 	from '../components/Snow.svelte';
 
 	storePopup.set({
 		computePosition,
@@ -31,6 +32,7 @@
 
 <div class="flex flex-col min-h-screen overflow-auto">
 	<Aura />
+	<Snow />
 
 	<header class="bg-gray-800 text-white p-3">
 		<!-- <div class=" flex justify-between items-center px-52"> -->
@@ -51,7 +53,7 @@
 		</div>
 	</header>
 
-	<main class="flex-1 container mx-auto mt-5">
+	<main class="flex-1 container mx-auto mt-5 z-50">
 	<!-- <main class="flex-1 px-52 mt-5"> -->
 		<slot />
 	</main>

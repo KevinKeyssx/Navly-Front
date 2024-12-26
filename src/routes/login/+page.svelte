@@ -9,11 +9,11 @@
 		<h1 class="text-3xl text-center">Iniciar sesión</h1>
 
 		<div class="mx-auto flex items-center justify-center gap-5">
-			<button class="btn variant-ghost-secondary">
+			<button class="btn btn-icon variant-ghos">
 				<GoogleIcons />
 			</button>
 
-			<button class="btn variant-ghost-secondary">
+			<button class="btn btn-icon variant-ghos">
 				<FacebookIcon />
 			</button>
 		</div>

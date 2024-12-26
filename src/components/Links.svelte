@@ -41,17 +41,16 @@
     }
 </script>
 
-
-<a
+<!-- <a
     href    = "https://www.skeleton.dev"
     target  = {'_blank'}
-    class   = "card card_zoom z-0 variant-soft-primary cursor-pointer"
->
+    class   = "card card_zoom variant-soft-primary cursor-pointer"
+> -->
 
-<!-- <div class="card card_zoom z-0 variant-soft-primary cursor-pointer"> -->
+<div class="card card_zoom z-0 variant-soft-primary cursor-pointer">
     <header class="card-header relative p-0">
         <img
-            class   = "h-auto max-w-full rounded-t-lg object-cover z-0"
+            class   = "h-auto max-w-full rounded-t-lg object-cover"
             src     = "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
             alt     = "preview"
         />
@@ -63,7 +62,7 @@
                 <h2 class="text-sm">Skeleton</h2>
 
                 <p class="text-[11px] text-white ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing .
+                    Lorem ipsum dolor sit amet consectetur adipisicing . {target}
                 </p>
             </div>
 
@@ -171,5 +170,5 @@
             Rew
         </button> -->
     </footer>
-<!-- </div> -->
-</a>
+</div>
+<!-- </a> -->

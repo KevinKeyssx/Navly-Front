@@ -39,6 +39,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.6.12",
     "navly": "file:",
-    "open-graph-scraper": "^6.8.2"
+    "open-graph-scraper": "^6.8.2",
+    "svelte-dnd-action": "^0.9.53"
   }
 }
