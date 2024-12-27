@@ -1,11 +1,13 @@
 <script lang="ts">
-
     export let iconSize = 'w-11 h-11';
-    export let style = 'h-auto card_zoom';
-
+    export let style    = 'h-auto card_zoom';
 </script>
 
-<div class= {`card variant-soft-primary flex justify-center items-center border-2 border-dotted border-sky-700 ${style}`}>
+
+<button
+    class={`card variant-soft-primary flex justify-center items-center border-2 border-dotted border-sky-700 ${style}`}
+    on:click={(event) => event.stopPropagation()}
+>
     <div class="text-blue-500 text-3xl py-3">
         <img
             src     = "/icons/plus-60.apng"
@@ -13,4 +15,4 @@
             class   = {iconSize}
         >
     </div>
-</div>
+</button>

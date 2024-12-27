@@ -15,9 +15,11 @@
 		storePopup
 	} from '@skeletonlabs/skeleton';
 
-	import Aura 	from '../components/Aura.svelte';
-	import Footer 	from '../components/Footer.svelte';
-	import Snow 	from '../components/Snow.svelte';
+	import Aura 		from '../components/Aura.svelte';
+	import Footer 		from '../components/Footer.svelte';
+	import Snow 		from '../components/Snow.svelte';
+	import DroverUrl 	from '../components/DroverUrl.svelte';
+	import Auth 		from '../components/Auth/Auth.svelte';
 
 	storePopup.set({
 		computePosition,
@@ -50,12 +52,16 @@
 					width		= "w-10"
 				/>
 			</div>
+
+			<Auth />
 		</div>
 	</header>
 
 	<main class="flex-1 container mx-auto mt-5 z-50">
 	<!-- <main class="flex-1 px-52 mt-5"> -->
-		<slot />
+		<DroverUrl >
+			<slot />
+		</DroverUrl>
 	</main>
 
 	<Footer />

@@ -39,6 +39,19 @@
         const res = await fetch( '/api/preview?url=https://www.netflix.com/watch/80104965?trackId=14207189&tctx=1%2C1%2Cebf9da2c-2068-45a7-90be-d11e71cb859b-298038227%2CNES_A13D4A0E8B1AA52D3E8D5B461E2E71-B4275BC75BB99D-D449A64DA3_p_1731635230699%2C%2C%2C%2C%2C%2CVideo%3A70024218%2CdetailsPagePlayButton' );
         console.log( "🚀 ~ ********res:", await  res.json())
     }
+
+
+
+    let isPressed = false;
+
+    function handleMouseDown() {
+        isPressed = true;
+    }
+
+    function handleMouseUp() {
+        isPressed = false;
+    }
+
 </script>
 
 <!-- <a
@@ -47,7 +60,12 @@
     class   = "card card_zoom variant-soft-primary cursor-pointer"
 > -->
 
-<div class="card card_zoom z-0 variant-soft-primary cursor-pointer">
+<div
+    class           = "card card_zoom z-0 variant-soft-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} "
+    on:mousedown    = {handleMouseDown}
+    on:mouseup      = {handleMouseUp}
+    aria-hidden     = "true"
+>
     <header class="card-header relative p-0">
         <img
             class   = "h-auto max-w-full rounded-t-lg object-cover"
