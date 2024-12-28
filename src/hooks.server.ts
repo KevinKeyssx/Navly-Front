@@ -1,4 +1,4 @@
-import type { RequestEvent } from '@sveltejs/kit';
+import { redirect, type RequestEvent } from '@sveltejs/kit';
 
 import { svelteKitHandler } from "better-auth/svelte-kit";
 
@@ -15,5 +15,11 @@ export async function handle(
         resolve : ( event: RequestEvent ) => Promise<Response>
     }
 ) {
+    const url = `${import.meta.env.VITE_BETTER_AUTH_URL}/`;
+
+    if ( event.url.href === url ) {
+        throw redirect( 302, `${url}dashboard` );
+    }
+
 	return svelteKitHandler({ event, resolve, auth: better });
 }

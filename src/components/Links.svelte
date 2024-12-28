@@ -61,7 +61,7 @@
 > -->
 
 <div
-    class           = "card card_zoom z-0 variant-soft-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} "
+    class           = "card card_zoom z-0 variant-glass-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} "
     on:mousedown    = {handleMouseDown}
     on:mouseup      = {handleMouseUp}
     aria-hidden     = "true"

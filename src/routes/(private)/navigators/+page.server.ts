@@ -10,8 +10,8 @@ export const load: PageServerLoad = async ({ request }) => {
         headers: request.headers,
     });
 
-    if (!session) {
-        throw redirect(302, "/login");
+    if ( !session ) {
+        throw redirect( 302, "/login" );
     }
 
     return {

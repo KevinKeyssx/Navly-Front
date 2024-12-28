@@ -4,7 +4,7 @@
 </script>
 
 <a href="/sites" rel="noopener noreferrer" class="card_zoom">
-    <div class="card variant-soft-primary">
+    <div class="card variant-glass-primary">
         <header class="card-header relative p-0">
             <img
                 class   = "h-auto max-w-full rounded-t-lg object-cover z-0"

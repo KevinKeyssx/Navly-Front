@@ -4,7 +4,7 @@
     const handleDragOver = (event: DragEvent): void => {
         event.preventDefault();
         isDragging = true;
-    };
+    }
 
     const handleDragLeave = (event: DragEvent): void => {
         const currentTarget = event.currentTarget as HTMLElement;
@@ -13,7 +13,7 @@
         if (!target || !currentTarget.contains(target)) {
             isDragging = false;
         }
-    };
+    }
 
     const handleDrop = (event: DragEvent): void => {
         event.preventDefault();
@@ -25,7 +25,7 @@
         } else {
             console.log('No se detectó una URL válida al soltar.');
         }
-    };
+    }
 
     const handlePaste = (event: ClipboardEvent): void => {
         const pastedData = event.clipboardData?.getData('text/plain') ?? '';
@@ -36,7 +36,7 @@
         } catch {
             console.log('No se detectó una URL válida al pegar.');
         }
-    };
+    }
 </script>
 
 <div 

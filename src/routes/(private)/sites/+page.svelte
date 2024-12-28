@@ -10,9 +10,9 @@
 		type DndEvent
 	} 					from "svelte-dnd-action";
 
-	import Links 	from "../../components/Links.svelte";
-	import CardAdd 	from "../../components/CardAdd.svelte";
-	import Filter	from "../../components/Filter.svelte";
+	import Links 	from "../../../components/Links.svelte";
+	import CardAdd 	from "../../../components/CardAdd.svelte";
+	import Filter	from "../../../components/Filter.svelte";
 
 
 	const flipDurationMs = 100;
@@ -48,7 +48,7 @@
 <Filter />
 
 <Accordion spacing='space-y-2'>
-	<AccordionItem open regionControl="variant-soft-primary" rounded="rounded-full">
+	<AccordionItem open regionControl="variant-glass-primary" rounded="rounded-full">
 		<svelte:fragment slot="lead">🚀</svelte:fragment>
 
 		<svelte:fragment slot="summary">

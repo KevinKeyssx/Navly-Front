@@ -9,13 +9,13 @@
 
 <div class="flex items-center gap-3 mb-3">
 	<input
-		class		= "input text-sm variant-ghost-primary"
+		class		= "input text-sm variant-glass-primary"
 		title		= "Busca tu navegador"
 		type		= "text"
 		placeholder	= "Busca tu navegador"
 	/>
 
-	<select class="select rounded-3xl w-96 text-sm variant-ghost-primary">
+	<select class="select rounded-3xl w-96 text-sm variant-glass-primary">
 		<option value="1">Option 1</option>
 		<option value="2">Option 2</option>
 		<option value="3">Option 3</option>
@@ -23,7 +23,7 @@
 		<option value="5">Option 5</option>
 	</select>
 
-	<RadioGroup background="variant-ghost-primary">
+	<RadioGroup background="variant-glass-primary">
 		<RadioItem bind:group={value} name="justify" value={0}>
 			<CubesIcon />
 		</RadioItem>

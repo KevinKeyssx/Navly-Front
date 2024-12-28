@@ -1,40 +1,58 @@
 <script lang="ts">
-	import Navigator	from "../components/Navigator.svelte";
-	import CardAdd		from "../components/CardAdd.svelte";
-	import Filter		from "../components/Filter.svelte";
+    import { goto } from "$app/navigation";
+
+    import Footer from "../components/Footer.svelte";
 </script>
 
-<Filter />
+<div class="mt-28 flex flex-col justify-center items-center p-6">
+    <header class="text-center">
+        <h1 class="text-4xl font-extrabold text-blue-600">¡Bienvenido a Navly!</h1>
+        <p class="text-gray-300 mt-4 text-lg">
+            La herramienta perfecta para organizar, buscar y agrupar tus URLs de manera eficiente.
+        </p>
+    </header>
 
-<!-- <nav class="list-nav">
-	<ul>
-		{#each [1,2,3,4,5] as item }
-			<li class="variant-glass-primary rounded-full card-hover">
-				<a href="/sites">
-					<img
-						src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
-						alt		= "img"
-						class	= "rounded-full w-8 h-8"
-					>
-					<span class="flex-auto">Skeleton</span>
-				</a>
-			</li>
-		{/each}
+    <main class="mt-10 max-w-3xl">
+        <section class="mb-8 p-6 shadow-lg rounded-lg variant-glass-tertiary">
+            <h2 class="text-2xl font-bold text-blue-500">¿Por qué usar Navly?</h2>
+            <ul class="mt-4 space-y-4 text-gray-300">
+                <li>
+                    <strong class="text-blue-600">🔍 Fácil búsqueda:</strong> Encuentra rápidamente cualquier URL que hayas guardado con nuestras herramientas avanzadas de búsqueda.
+                </li>
+                <li>
+                    <strong class="text-blue-600">📂 Agrupación inteligente:</strong> Organiza tus URLs en navegadores y categorías personalizadas, adaptadas a tus necesidades.
+                </li>
+                <li>
+                    <strong class="text-blue-600">🚀 Ahorro de tiempo:</strong> Olvídate de perder tiempo buscando enlaces antiguos en marcadores o correos.
+                </li>
+                <li>
+                    <strong class="text-blue-600">🔒 Seguridad:</strong> Tus datos están protegidos con encriptación y solo tú tienes acceso a ellos.
+                </li>
+            </ul>
+        </section>
 
-		<li>
-			<CardAdd iconSize='w-7 h-7' style="h-12 rounded-full card-hover" />
-		</li>	
-	</ul>
-</nav> -->
+        <section class=" p-6 shadow-lg rounded-lg variant-glass-tertiary">
+            <h2 class="text-2xl font-bold text-blue-500">Cómo funciona</h2>
+            <p class="mt-4 text-gray-300">
+                En pocos pasos, Navly transforma la manera en que administras tus enlaces:
+            </p>
+            <ol class="mt-4 list-decimal list-inside space-y-3 text-gray-300">
+                <li>Regístrate o inicia sesión para empezar.</li>
+                <li>Añade tus URLs favoritas en navegadores personalizados.</li>
+                <li>Organiza y busca enlaces de manera rápida y eficiente.</li>
+                <li>Accede desde cualquier dispositivo en cualquier momento.</li>
+            </ol>
+        </section>
+    </main>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-2 md:gap-2 lg:gap-3 xl:gap-4 2xl:gap-5">
-
-	{#each [1,2,3,4,6] as index}
-		<Navigator
-			url		= {'https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif'}
-			name	= 'Navly'
-		/>
-	{/each}
-
-	<CardAdd />
+    <footer class="mt-10">
+        <button 
+            class="btn variant-glass-primary text-white py-2 px-6 rounded-full shadow-md text-lg font-bold"
+            on:click={() => goto( "/login" )}
+        >
+            Inicia Sesión y Comienza Ahora 🚀
+        </button>
+    </footer>
 </div>
+
+<Footer />

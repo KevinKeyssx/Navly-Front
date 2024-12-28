@@ -1,21 +1,17 @@
 <script lang="ts">
-	import FacebookIcon from "../../icons/FacebookIcon.svelte";
-	import GoogleIcons	from "../../icons/GoogleIcons.svelte";
+	import FacebookAuth from "../../../components/Auth/FacebookAuth.svelte";
+	import GoogleAuth	from "../../../components/Auth/GoogleAuth.svelte";
 </script>
 
 
 <main class="grid place-items-center container mx-auto h-full">
-	<div class="space-y-5 variant-ghost-primary w-[40%] mt-10 p-10 rounded-2xl">
-		<h1 class="text-3xl text-center">Iniciar sesión</h1>
+	<div class="space-y-5 variant-glass-primary w-[90%] sm:w-2/3 lg:w-1/2 xl:w-1/3 p-7 sm:p-10 rounded-2xl">
+		<h1 class="text-2xl lg:text-3xl text-center">Iniciar sesión</h1>
 
-		<div class="mx-auto flex items-center justify-center gap-5">
-			<button class="btn btn-icon variant-ghos">
-				<GoogleIcons />
-			</button>
+		<div class="grid items-center gap-2">
+			<GoogleAuth />
 
-			<button class="btn btn-icon variant-ghos">
-				<FacebookIcon />
-			</button>
+			<FacebookAuth />
 		</div>
 
 		<label class="label">
@@ -23,7 +19,7 @@
 
 			<input
 				class		= "input variant-ghost-primary"
-				title		= "Input"
+				title		= "Usuario"
 				type		= "text"
 				placeholder	= "Ingresa usuario"
 			/>
@@ -34,7 +30,7 @@
 
 			<input
 				class		= "input variant-ghost-primary"
-				title		= "Input"
+				title		= "Contraseña"
 				type		= "text"
 				placeholder	= "Ingrese contraseña"
 			/>
