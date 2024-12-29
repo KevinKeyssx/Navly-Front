@@ -1,8 +1,11 @@
 <script lang="ts">
     import { RadioGroup, RadioItem } from "@skeletonlabs/skeleton";
 
-    import CubesIcon    from "../icons/CubesIcon.svelte";
-    import ListIcon     from "../icons/ListIcon.svelte";
+    import CubesIcon    from "$icons/CubesIcon.svelte";
+    import ListIcon     from "$icons/ListIcon.svelte";
+  import ButtonPrimary from "./Buttons/ButtonPrimary.svelte";
+  import ButtonSecondary from "./Buttons/ButtonSecondary.svelte";
+	// import SearchUi from "./search/SearchUI.svelte";
 
     let value: number = 0;
 </script>
@@ -14,6 +17,10 @@
 		type		= "text"
 		placeholder	= "Busca tu navegador"
 	/>
+	<!-- <ButtonPrimary /> -->
+	<ButtonSecondary />
+
+	<!-- <SearchUi /> -->
 
 	<select class="select rounded-3xl w-96 text-sm variant-glass-primary">
 		<option value="1">Option 1</option>

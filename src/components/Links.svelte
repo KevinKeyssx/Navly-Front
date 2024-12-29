@@ -5,17 +5,18 @@
         type PopupSettings
     } from "@skeletonlabs/skeleton";
 
-    import DeleteIcon       from "../icons/DeleteIcon.svelte";
-    import EditIcon         from "../icons/EditIcon.svelte";
-    import ViewIcon         from "../icons/ViewIcon.svelte";
-    import WebIcon          from "../icons/WebIcon.svelte";
-    import Preview          from "./Preview.svelte";
-    import StarFullIcon     from "../icons/StarFullIcon.svelte";
-    import StartEmptyIcon   from "../icons/StartEmptyIcon.svelte";
-    import StarHalfIcon     from "../icons/StarHalfIcon.svelte";
-    import Previewer        from "./Previewer.svelte";
-    import HeartFullIcon    from "../icons/HeartFullIcon.svelte";
-    import HeartEmptyIcon   from "../icons/HeartEmptyIcon.svelte";
+    import DeleteIcon       from "$icons/DeleteIcon.svelte";
+    import EditIcon         from "$icons/EditIcon.svelte";
+    import ViewIcon         from "$icons/ViewIcon.svelte";
+    import WebIcon          from "$icons/WebIcon.svelte";
+    import StarFullIcon     from "$icons/StarFullIcon.svelte";
+    import StartEmptyIcon   from "$icons/StartEmptyIcon.svelte";
+    import StarHalfIcon     from "$icons/StarHalfIcon.svelte";
+    import HeartFullIcon    from "$icons/HeartFullIcon.svelte";
+    import HeartEmptyIcon   from "$icons/HeartEmptyIcon.svelte";
+
+    import Preview          from "$components/Preview.svelte";
+    import Previewer        from "$components/Previewer.svelte";
 
 
     export let url      : string;
@@ -52,6 +53,10 @@
         isPressed = false;
     }
 
+    const openInNewTab = ( destination: string ) => {
+        window.open(destination, "_blank");
+    };
+
 </script>
 
 <!-- <a
@@ -61,10 +66,11 @@
 > -->
 
 <div
-    class           = "card card_zoom z-0 variant-glass-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} "
+    class           = "card card_zoom z-0 variant-glass-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} hover:brightness-125"
     on:mousedown    = {handleMouseDown}
     on:mouseup      = {handleMouseUp}
     aria-hidden     = "true"
+    on:dblclick     = {() => openInNewTab('https://www.skeleton.dev')}
 >
     <header class="card-header relative p-0">
         <img
@@ -123,7 +129,13 @@
                 alt = "link"
             />
 
-            www.skeleton.com
+            <!-- www.skeleton.com -->
+            <a
+                href    = "https://www.skeleton.dev"
+                target  = {'_blank'}
+            >
+                www.skeleton.com
+            </a>
         </div>
         <!-- <a
             href    = "https://www.skeleton.dev"

@@ -16,8 +16,11 @@ export async function handle(
     }
 ) {
     const url = `${import.meta.env.VITE_BETTER_AUTH_URL}/`;
+    const session = await better.api.getSession({
+        headers: event.request.headers
+    });
 
-    if ( event.url.href === url ) {
+    if ( event.url.href === url && session ) {
         throw redirect( 302, `${url}dashboard` );
     }
 

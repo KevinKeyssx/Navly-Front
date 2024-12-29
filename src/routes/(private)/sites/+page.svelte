@@ -10,9 +10,10 @@
 		type DndEvent
 	} 					from "svelte-dnd-action";
 
-	import Links 	from "../../../components/Links.svelte";
-	import CardAdd 	from "../../../components/CardAdd.svelte";
-	import Filter	from "../../../components/Filter.svelte";
+	import Links 			from "$components/Links.svelte";
+	import CardAdd 			from "$components/CardAdd.svelte";
+	import Filter			from "$components/Filter.svelte";
+	import RightArrowIcon 	from '$icons/RightArrowIcon.svelte';
 
 
 	const flipDurationMs = 100;
@@ -44,6 +45,22 @@
 		links = env.detail.items
 	}
 </script>
+
+<ol class="breadcrumb space-x-2 mb-3 variant-glass-surface py-2 justify-center rounded-full items-center w-[60%] sm:w-[25rem]">
+	<li class="crumb"><a class="anchor" href="/home">Inicio</a></li>
+	<li class="crumb-separator" aria-hidden>
+		<RightArrowIcon />
+	</li>
+	<li class="crumb"><a class="anchor" href="/dashboard">Dashboard</a></li>
+	<li class="crumb-separator" aria-hidden>
+		<RightArrowIcon />
+	</li>
+	<li class="crumb"><a class="anchor" href="/navigators">Navegadores</a></li>
+	<li class="crumb-separator" aria-hidden>
+		<RightArrowIcon />
+	</li>
+	<li>Sitios</li>
+</ol>
 
 <Filter />
 

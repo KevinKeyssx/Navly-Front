@@ -14,8 +14,8 @@
 		storePopup
 	} from '@skeletonlabs/skeleton';
 
-	import Aura 		from '../components/Aura.svelte';
-	import Snow 		from '../components/Snow.svelte';
+	import Aura 		from '$components/Aura.svelte';
+	import Snow 		from '$components/Snow.svelte';
 
 	storePopup.set({
 		computePosition,
@@ -26,7 +26,6 @@
 		arrow
 	});
 </script>
-
 
 <div class="flex flex-col min-h-screen overflow-auto">
 	<Aura />
