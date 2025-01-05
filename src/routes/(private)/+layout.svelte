@@ -1,9 +1,7 @@
 <script lang="ts">
 	import './app.postcss';
 
-	import DroverUrl 	from '$components/DroverUrl.svelte';
-	import Footer 		from '$components/Footer.svelte';
-	import Header 		from '$components/Header.svelte';
+	import { Header, DroverUrl, Footer } from '$components';
 </script>
 
 <Header />

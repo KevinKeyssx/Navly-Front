@@ -1,23 +1,18 @@
 <script lang="ts">
-	import { flip } from 'svelte/animate'
-
-	import {
-		Accordion,
-		AccordionItem,
-	} 					from "@skeletonlabs/skeleton";
 	import {
 		dndzone,
 		type DndEvent
-	} 					from "svelte-dnd-action";
+	}					from "svelte-dnd-action";
+	import { flip }		from 'svelte/animate'
 
-	import Links 			from "$components/Links.svelte";
-	import CardAdd 			from "$components/CardAdd.svelte";
-	import Filter			from "$components/Filter.svelte";
-	import RightArrowIcon 	from '$icons/RightArrowIcon.svelte';
+	import { Accordion, AccordionItem  } from "@skeletonlabs/skeleton";
+
+	import { Links, CardAdd, Filter }	from "$components";
+	import { RightArrowIcon }			from '$icons';
 
 
 	const flipDurationMs = 100;
-
+	let isNav = true;
 
 	interface ListItem {
 		id: number;
@@ -37,13 +32,11 @@
 		{ id: 10, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
 	];
 
-	const handleConsider = ( env: CustomEvent<DndEvent<ListItem>> ) => {
-		links = env.detail.items
-	}
+	const handleConsider = ( env: CustomEvent<DndEvent<ListItem>> ) =>
+		links = env.detail.items;
 
-	const handleFinalize = ( env: CustomEvent<DndEvent<ListItem>> ) => {
-		links = env.detail.items
-	}
+	const handleFinalize = ( env: CustomEvent<DndEvent<ListItem>> ) =>
+		links = env.detail.items;
 </script>
 
 <ol class="breadcrumb space-x-2 mb-3 variant-glass-surface py-2 justify-center rounded-full items-center w-[60%] sm:w-[25rem]">
@@ -62,7 +55,7 @@
 	<li>Sitios</li>
 </ol>
 
-<Filter />
+<Filter bind:isNav />
 
 <Accordion spacing='space-y-2'>
 	<AccordionItem open regionControl="variant-glass-primary" rounded="rounded-full">

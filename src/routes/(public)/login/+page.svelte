@@ -1,6 +1,5 @@
 <script lang="ts">
-	import FacebookAuth from "../../../components/Auth/FacebookAuth.svelte";
-	import GoogleAuth	from "../../../components/Auth/GoogleAuth.svelte";
+	import { FacebookAuth, GoogleAuth } from '$components';
 </script>
 
 

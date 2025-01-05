@@ -3,18 +3,20 @@
     export let name : string;
 </script>
 
-<a href="/sites" rel="noopener noreferrer" class="card_zoom">
-    <div class="card variant-glass-primary">
+<a href="/sites" rel="noopener noreferrer" class="">
+    <div class="card card-hover variant-glass-primary hover:brightness-105">
         <header class="card-header relative p-0">
             <img
-                class   = "h-auto max-w-full rounded-t-lg object-cover z-0"
+                class   = "h-auto max-w-full rounded-t-lg object-cover z-0 card-hover"
                 src     = {url}
                 alt     = "preview"
             />
         </header>
 
         <section class="px-4 py-2 text-[13px] space-y-1 fira-sans-extralight">
-            {name} asdlkjlk asdkjfk alskdjf jahsdjh sjdhlk klajsdk  alkdjsfklj 
+            {name}
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam fuga incidunt fugit, alias, vel cupiditate minus culpa ad recusandae aliquid magnam quia adipisci explicabo aspernatur atque officiis? Officia, veniam. Fuga?
+            
 
             <!-- <input 
                 type="text" 

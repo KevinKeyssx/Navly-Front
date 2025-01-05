@@ -69,8 +69,8 @@
     class           = "card card_zoom z-0 variant-glass-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} hover:brightness-125"
     on:mousedown    = {handleMouseDown}
     on:mouseup      = {handleMouseUp}
-    aria-hidden     = "true"
     on:dblclick     = {() => openInNewTab('https://www.skeleton.dev')}
+    aria-hidden     = "true"
 >
     <header class="card-header relative p-0">
         <img

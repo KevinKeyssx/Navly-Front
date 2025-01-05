@@ -1,9 +1,8 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
-
-    import Links from '$components/Links.svelte'
-  import Title from "$components/Title/Title.svelte";
     import { ConicGradient, type ConicStop } from "@skeletonlabs/skeleton";
+
+    import { goto }         from "$app/navigation";
+    import { Links, Title } from '$components'
 
     let stats = {
         totalUrls       : 123,

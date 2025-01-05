@@ -8,14 +8,10 @@
 		shift,
 		offset,
 		arrow
-	} from '@floating-ui/dom';
+	}						from '@floating-ui/dom';
+	import { storePopup }	from '@skeletonlabs/skeleton';
 
-	import {
-		storePopup
-	} from '@skeletonlabs/skeleton';
-
-	import Aura 		from '$components/Aura.svelte';
-	import Snow 		from '$components/Snow.svelte';
+	import { Aura, Snow } from '$components';
 
 	storePopup.set({
 		computePosition,

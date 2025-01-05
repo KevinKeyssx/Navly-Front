@@ -1,19 +1,20 @@
-
 <script lang="ts">
 	import { Avatar } from '@skeletonlabs/skeleton';
 
-    import { auth } 	from "$lib/auth-client";
-	import { goto } 	from '$app/navigation';
-	import PowerIcon 	from '$icons/PowerIcon.svelte';
+	import { goto } 			from '$app/navigation';
+	import { AuraButton, Neon }	from '$components';
+    import { auth } 			from "$lib/auth-client";
+	import { PowerIcon } 		from '$icons';
 
 
     const session = auth.useSession();
 </script>
-<header class="variant-glass-surface text-white py-3">
-	<!-- <div class=" flex justify-between items-center px-52"> -->
-	<div class="container mx-auto flex justify-between items-center px-5">
-		<a href="/home" class="text-xl uppercase font-bold">Navly</a>
 
+
+<header class="variant-glass-surface text-white py-3">
+	<div class="container mx-auto flex justify-between items-center px-5">
+		<Neon />
+		<!-- <h1 class="text-2xl uppercase">Navly</h1> -->
 		<div class="px-0.5 flex variant-ringed-tertiary h-10 justify-between items-center rounded-full">
 			<Avatar
 				src			= {$session?.data?.user.image}
@@ -25,15 +26,15 @@
 
 			<h2 class="text-sky-500 mx-3">{$session?.data?.user.name}</h2>
 
-			<button
-				class		= "btn btn-icon p-0"
-				on:click	= { async () => {
+			<AuraButton
+				variant	= ""
+				onClick	= { async () => {
 					await auth.signOut();
-					goto('/login');
+					goto( '/login' );
 				}}
 			>
 				<PowerIcon />
-			</button>
+			</AuraButton>
 		</div>
 	</div>
 </header>
