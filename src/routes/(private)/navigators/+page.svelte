@@ -11,6 +11,7 @@
 		Filter
 	}							from "$components";
 	import { RightArrowIcon }	from "$icons";
+  import DragTest from "$components/DragTest.svelte";
 
 
 	let isNav = true;
@@ -46,40 +47,60 @@
 </script>
 
 
-<ol class="breadcrumb space-x-2 mb-3 variant-glass-surface py-2 justify-center rounded-full items-center w-80">
-	<li class="crumb">
-		<a class="anchor" href="/home">Inicio</a>
-	</li>
+<main class="space-y-3">
+	<ol class="breadcrumb space-x-2 variant-glass-surface py-2 justify-center rounded-full items-center w-80">
+		<li class="crumb">
+			<a class="anchor" href="/home">Inicio</a>
+		</li>
 
-	<li class="crumb-separator" aria-hidden>
-		<RightArrowIcon />
-	</li>
+		<li class="crumb-separator" aria-hidden>
+			<RightArrowIcon />
+		</li>
 
-	<li class="crumb">
-		<a class="anchor" href="/dashboard">Dashboard</a>
-	</li>
+		<li class="crumb">
+			<a class="anchor" href="/dashboard">Dashboard</a>
+		</li>
 
-	<li class="crumb-separator" aria-hidden>
-		<RightArrowIcon />
-	</li>
+		<li class="crumb-separator" aria-hidden>
+			<RightArrowIcon />
+		</li>
 
-	<li>Navegadores</li>
-</ol>
+		<li>Navegadores</li>
+	</ol>
 
-<Filter bind:isNav />
+	<Filter bind:isNav />
 
-<!-- {#if isNav} -->
-	<!-- <div
-		class="space-y-1"
-		use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-		on:consider={handleConsider}
-		on:finalize={handleFinalize}
-	>
-		{#each links as item (item.id)}
-			<div
-				class="variant-glass-primary rounded-full card-hover py-2 px-4 flex"
-				animate:flip={{ duration: flipDurationMs }}
-			>
+	<!-- {#if isNav} -->
+		<!-- <div
+			class="space-y-1"
+			use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
+			on:consider={handleConsider}
+			on:finalize={handleFinalize}
+		>
+			{#each links as item (item.id)}
+				<div
+					class="variant-glass-primary rounded-full card-hover py-2 px-4 flex"
+					animate:flip={{ duration: flipDurationMs }}
+				>
+					<a href="/sites" class="flex items-center space-x-2">
+						<img
+							src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
+							alt		= "img"
+							class	= "rounded-full w-8 h-8"
+						>
+
+						<span class="flex-auto">Skeleton {item.id}</span>
+					</a>
+				</div>
+			{/each}
+		</div> -->
+
+		<!-- <DragDropMove
+			links			= {links}
+			componentStyle	= {`${isNav ? 'space-y-1': 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0'} `}
+			animateStyle	= {`${isNav ? 'variant-glass-primary rounded-full card-hover py-2 px-4 flex' : ''}`}
+		>
+			{#if isNav}
 				<a href="/sites" class="flex items-center space-x-2">
 					<img
 						src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
@@ -87,48 +108,33 @@
 						class	= "rounded-full w-8 h-8"
 					>
 
-					<span class="flex-auto">Skeleton {item.id}</span>
+					<span class="flex-auto">Skeleton </span>
 				</a>
-			</div>
-		{/each}
-	</div> -->
+				{:else}
+					<Navigator
+						url		= {'https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif'}
+						name	= {`Navly`}
+					/>
+			{/if}
+		</DragDropMove> -->
 
-	<DragDropMove
-		links			= {links}
-		componentStyle	= {`${isNav ? 'space-y-1': 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0'} `}
-		animateStyle	= {`${isNav ? 'variant-glass-primary rounded-full card-hover py-2 px-4 flex' : ''}`}
-	>
-		{#if isNav}
-			<a href="/sites" class="flex items-center space-x-2">
-				<img
-					src		= "https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif"
-					alt		= "img"
-					class	= "rounded-full w-8 h-8"
-				>
+	<DragTest />
 
-				<span class="flex-auto">Skeleton </span>
-			</a>
-			{:else}
-				<Navigator
-					url		= {'https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif'}
-					name	= {`Navly`}
-				/>
-		{/if}
-	</DragDropMove>
-<!-- {:else} -->
-	<!-- <div
-		class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
-		use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-		on:consider={handleConsider}
-		on:finalize={handleFinalize}
-	>
-		{#each links as item (item.id)}
-			<div animate:flip={{ duration: flipDurationMs }}>
-				<Navigator
-					url		= {'https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif'}
-					name	= {`Navly ${item.id}`}
-				/>
-			</div>
-		{/each}
-	</div> -->
-<!-- {/if} -->
+	<!-- {:else} -->
+		<!-- <div
+			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
+			use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
+			on:consider={handleConsider}
+			on:finalize={handleFinalize}
+		>
+			{#each links as item (item.id)}
+				<div animate:flip={{ duration: flipDurationMs }}>
+					<Navigator
+						url		= {'https://res.cloudinary.com/dbgzsikcs/image/upload/v1709439556/sample/8b199247-beed-46bc-a900-207e1266a141.avif'}
+						name	= {`Navly ${item.id}`}
+					/>
+				</div>
+			{/each}
+		</div> -->
+	<!-- {/if} -->
+</main>

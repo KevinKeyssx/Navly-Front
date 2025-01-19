@@ -19,8 +19,9 @@
     import Previewer        from "$components/Previewer.svelte";
 
 
-    export let url      : string;
-    export let target   : string;
+    export let url      : string = '';
+    export let target   : string = '';
+    export let id : string
 
     let value = { current: 0, max: 5 };
 
@@ -66,10 +67,11 @@
 > -->
 
 <div
+    id={`linkstyle`}
     class           = "card card_zoom z-0 variant-glass-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} hover:brightness-125"
-    on:mousedown    = {handleMouseDown}
-    on:mouseup      = {handleMouseUp}
-    on:dblclick     = {() => openInNewTab('https://www.skeleton.dev')}
+    on:mousedown    = { handleMouseDown }
+    on:mouseup      = { handleMouseUp }
+    on:dblclick     = {() => openInNewTab( 'https://www.skeleton.dev' )}
     aria-hidden     = "true"
 >
     <header class="card-header relative p-0">
@@ -101,9 +103,13 @@
                 </div> -->
 
                 <div class="grid space-y-3">
-                    <DeleteIcon class="z-0 transition-all duration-300 transform hover:scale-110"/>
+                    <button class="hover:scale-110">
+                        <DeleteIcon />
+                    </button>
 
-                    <EditIcon class="z-0 transition-all duration-300 transform hover:scale-110"/>
+                    <button class="hover:scale-110">
+                        <EditIcon/>
+                    </button>
 
                     <button class="btn btn-sm p-0">
                         <!-- <HeartEmptyIcon /> -->
@@ -161,6 +167,7 @@
             on:icon     = {iconClick}
             max         = {value.max}
             justify     = 'justify-start'
+            spacing     = 'gap-0.5'
         >
             <svelte:fragment slot="empty">
                 <StartEmptyIcon />
