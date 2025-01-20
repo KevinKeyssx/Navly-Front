@@ -34,14 +34,18 @@
 
     function multiColumnLeft(): void {
         let x = elemMovies.scrollWidth;
-        if (elemMovies.scrollLeft !== 0) x = elemMovies.scrollLeft - elemMovies.clientWidth;
+
+        if ( elemMovies.scrollLeft !== 0 ) x = elemMovies.scrollLeft - elemMovies.clientWidth;
+
         elemMovies.scroll(x, 0);
     }
+
 
     function multiColumnRight(): void {
         let x = 0;
         // -1 is used because different browsers use different methods to round scrollWidth pixels.
         if (elemMovies.scrollLeft < elemMovies.scrollWidth - elemMovies.clientWidth - 1) x = elemMovies.scrollLeft + elemMovies.clientWidth;
+
         elemMovies.scroll(x, 0);
     }
 
@@ -116,7 +120,7 @@
         <p class="text-start text-sky-500">Total: {stats.totalCategories}</p>
     </button>
 
-    <button class="btn grid justify-start card card-hover p-5 gap-1  variant-glass-primary">
+    <button class="btn grid justify-start card card-hover p-5 gap-1  variant-glass-warning brightness-80">
         <h2 class="text-xl font-semibold">🔗 URLs</h2>
         <p class="text-start text-sky-500">Total: {stats.totalUrls}</p>
     </button>

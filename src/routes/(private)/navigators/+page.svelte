@@ -8,10 +8,13 @@
 	import {
 		DragDropMove,
 		Navigator,
-		Filter
+		Filter,
+
+    AuraButton
+
 	}							from "$components";
-	import { RightArrowIcon }	from "$icons";
-  import DragTest from "$components/DragTest.svelte";
+	import { PlusIcon, RightArrowIcon }	from "$icons";
+	import DragTest from "$components/DragTest.svelte";
 
 
 	let isNav = true;
@@ -29,11 +32,11 @@
 		{ id: 2, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
 		{ id: 3, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
 		{ id: 4, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 5, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 6, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
+		{ id: 5,	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
+		{ id: 6, 	url: "hIttps://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
 		{ id: 7, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 8, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 9, 	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
+		{ id: 8, 	url: "https://lordicon.com/icons/wiredj/gradient?q=remove&i=185-trash-bin" },
+		{ id: 9, 	url: "{https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
 		{ id: 10,	url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
 	];
 
@@ -48,7 +51,10 @@
 
 
 <main class="space-y-3">
-	<ol class="breadcrumb space-x-2 variant-glass-surface py-2 justify-center rounded-full items-center w-80">
+	<div class="flex items-center justify-between">
+
+	<ol class="breadcrumb space-x-1 items-center">
+	<!-- <ol class="breadcrumb space-x-1 items-center bg-sky-500/20 pl-5 py-2 rounded-full w-80 justify-start"> -->
 		<li class="crumb">
 			<a class="anchor" href="/home">Inicio</a>
 		</li>
@@ -68,7 +74,19 @@
 		<li>Navegadores</li>
 	</ol>
 
+	<div class=" flex items-center gap-2">
+
+
+	<AuraButton
+	onClick={() => console.log('searching...')}
+>
+	<PlusIcon/>
+</AuraButton> 
 	<Filter bind:isNav />
+</div>
+
+</div>
+
 
 	<!-- {#if isNav} -->
 		<!-- <div

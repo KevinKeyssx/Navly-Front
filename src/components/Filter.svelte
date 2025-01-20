@@ -14,8 +14,8 @@
 </script>
 
 
-<div class="flex items-center gap-2">
-	<input
+<div class="flex items-center gap-2 justify-end">
+	<!-- <input
 		class		= "input text-sm variant-glass-primary"
 		title		= "Busca tu navegador"
 		type		= "text"
@@ -26,9 +26,9 @@
 		onClick={() => console.log('searching...')}
 	>
 		<PlusIcon/>
-	</AuraButton>
+	</AuraButton> -->
 
-	<RadioGroup background="variant-glass-primary">
+	<RadioGroup background="bg-transparent" padding="px-3 py-0.5">
 		<RadioItem bind:group={value} name="cubes" value={0}>
 			<CubesIcon />
 		</RadioItem>

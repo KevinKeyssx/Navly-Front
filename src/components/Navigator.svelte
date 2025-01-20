@@ -3,13 +3,14 @@
     export let name : string;
 </script>
 
+
 <a href="/sites" rel="noopener noreferrer" class="">
     <div class="card card-hover variant-glass-primary hover:brightness-105">
         <header class="card-header relative p-0">
             <img
                 class   = "h-auto max-w-full rounded-t-lg object-cover z-0 card-hover"
                 src     = {url}
-                alt     = "preview"
+                alt     = {name}
             />
         </header>
 
