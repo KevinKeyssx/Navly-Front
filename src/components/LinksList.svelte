@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { DeleteIcon } from "$icons";
+
+
     export let id : string;
 </script>
 
@@ -12,8 +15,18 @@
 		>
 
 		<div class="grid -space-y-1 break-words">
-			<span class="font-semibold break-all">Skeleton {id}</span>
-		
+			<div class="flex items-center justify-between">
+
+				<span class="font-semibold break-all">Skeleton {id}</span>
+
+				<button
+					on:click	= {() => {}}
+					class		= "hover:scale-110"
+				>
+					<DeleteIcon />
+				</button>
+			</div>
+
 			<a
 				href="https://www.skeleton.com"
 				class="text-[12px] text-sky-500 font-semibold underline break-all"

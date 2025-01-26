@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 
-	import { Filter }				from "$components";
-    import { DeleteIcon, EditIcon } from "$icons";
-	import { createEventDispatcher } from 'svelte';
+	import { Filter }					from "$components";
+    import { DeleteIcon, EditIcon } 	from "$icons";
+	import { createEventDispatcher } 	from 'svelte';
+	import { confirmModal } 			from './modal.config';
 
 	const dispatch = createEventDispatcher();
 
@@ -22,17 +23,13 @@
 
 
 	const modalStore = getModalStore();
-	const modal: ModalSettings = {
-		type				: 'confirm',
-		title				: 'Confirmar eliminación',
-		body				: `¿Estás seguro de que deseas eliminar este grupo? Se eliminarán todos los sitios asociados.`,
-		buttonTextConfirm	: 'Confirmar',
-		buttonTextCancel	: 'Cancelar',
-		modalClasses		: 'px-8 py-5 !variant-glass-primary',
-		backdropClasses		: '!bg-primary-800/20',
-		meta				: 'delete',
+	const modal = {
+		...confirmModal,
+		title	: 'Confirmar eliminación',
+		body	: '¿Estás seguro de que deseas eliminar este grupo? Se eliminarán todos los sitios asociados.',
+		meta	: 'delete',
 		response,
-	};
+	}
 
 
 	function onDelete( event: MouseEvent ) {

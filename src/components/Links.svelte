@@ -1,22 +1,35 @@
 <script lang="ts">
     import {
-        popup,
+		popup,
         Ratings,
-        type PopupSettings
+		getModalStore,
+        type PopupSettings,
     } from "@skeletonlabs/skeleton";
 
-    import DeleteIcon       from "$icons/DeleteIcon.svelte";
-    import EditIcon         from "$icons/EditIcon.svelte";
-    import ViewIcon         from "$icons/ViewIcon.svelte";
-    import WebIcon          from "$icons/WebIcon.svelte";
-    import StarFullIcon     from "$icons/StarFullIcon.svelte";
-    import StartEmptyIcon   from "$icons/StartEmptyIcon.svelte";
-    import StarHalfIcon     from "$icons/StarHalfIcon.svelte";
-    import HeartFullIcon    from "$icons/HeartFullIcon.svelte";
-    import HeartEmptyIcon   from "$icons/HeartEmptyIcon.svelte";
+
+	const modalStore = getModalStore();
+	const modal = {
+		...confirmModal,
+		title	: 'Confirmar eliminación',
+		body	: '¿Estás seguro de que deseas eliminar este grupo? Se eliminarán todos los sitios asociados.',
+		meta	: 'delete',
+	}
+
+    import {
+		DeleteIcon,
+		EditIcon,
+		StarFullIcon,
+		StarEmptyIcon,
+		StarHalfIcon,
+		HeartFullIcon,
+		HeartEmptyIcon
+	}       				from "$icons";
 
     import Preview          from "$components/Preview.svelte";
     import Previewer        from "$components/Previewer.svelte";
+	import { confirmModal } from "./Sites/modal.config";
+
+
 
 
     export let url      : string = '';
@@ -32,7 +45,7 @@
     const popupHover: PopupSettings = {
         event       : 'hover',
         target,
-        placement   : 'left-end'
+        placement   : 'bottom',
         // placement   : 'bottom-end'
     };
 
@@ -58,7 +71,14 @@
         window.open(destination, "_blank");
     };
 
+
+	const popupFeatured: PopupSettings = {
+		event		: 'click',
+		target		: 'popupFeatured',
+		placement	: 'right-start',
+	};
 </script>
+
 
 <!-- <a
     href    = "https://www.skeleton.dev"
@@ -67,7 +87,7 @@
 > -->
 
 <div
-    id={`linkstyle`}
+    id				= { `linkstyle` }
     class           = "card card_zoom z-0 variant-glass-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} hover:brightness-125"
     on:mousedown    = { handleMouseDown }
     on:mouseup      = { handleMouseUp }
@@ -103,18 +123,25 @@
                 </div> -->
 
                 <div class="grid space-y-3">
-                    <button class="hover:scale-110">
-                        <DeleteIcon />
+
+					<button
+						on:click={() => modalStore.trigger( modal )}
+						class	="hover:scale-110"
+					>
+						<DeleteIcon />
                     </button>
 
-                    <button class="hover:scale-110">
+                    <button
+						class="hover:scale-110"
+						use:popup={popupFeatured}
+					>
                         <EditIcon/>
                     </button>
 
-                    <button class="btn btn-sm p-0">
-                        <!-- <HeartEmptyIcon /> -->
-                        <HeartFullIcon />
-                    </button>
+                    <!-- <button class="btn btn-sm p-0"> -->
+                        <HeartEmptyIcon />
+                        <!-- <HeartFullIcon /> -->
+                    <!-- </button> -->
                 </div>
 
                 <img
@@ -209,3 +236,26 @@
     </footer>
 </div>
 <!-- </a> -->
+
+
+<div
+	class		= "ml-4 mb-32 card rounded-lg p-5 w-72 shadow-xl z-50 variant-glass-primary space-y-1"
+	data-popup	= "popupFeatured"
+>
+	<!-- <h3 class="text-md font-semibold">Editar link</h3> -->
+
+	<label for="name">Nombre</label>
+	<input type="text" name="name" id="name" class="input w-full h-9 !bg-transparent font-semibold">
+
+	<label for="link">Link</label>
+	<input type="text" name="link" id="link" class="input w-full h-9 !bg-transparent font-semibold">
+
+	<label for="description">Descripción</label>
+	<textarea name="description" id="description" class="textarea w-full h-20 !bg-transparent font-semibold"></textarea>
+
+	<label for="url">Url</label>
+	<textarea name="url" id="url" class="textarea w-full h-20 !bg-transparent font-semibold"></textarea>
+
+	<!-- <div class="arrow variant-glass-primary" /> -->
+	<!-- <div class="arrow bg-surface-100-800-token" /> -->
+</div>

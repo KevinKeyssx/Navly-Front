@@ -7,7 +7,12 @@
 
 <button
     class    = { `btn ${variant}` }
-    on:click = { onClick }
+    on:click = {( event )  => {
+		event.stopPropagation();
+		event.preventDefault();
+		onClick();
+
+	}}
     disabled = { disabled }
 >
     <slot />
