@@ -1,325 +1,348 @@
 <script lang="ts">
+	import { dndzone }  from "svelte-dnd-action";
+    import { flip }     from "svelte/animate";
+    import { slide }    from "svelte/transition";
+
 	import {
-		dndzone,
-		type DndEvent
-	}					from "svelte-dnd-action";
-	import { flip }		from 'svelte/animate'
-
-	import { Accordion, AccordionItem  } from "@skeletonlabs/skeleton";
-
-	import { Links, Filter }	from "$components";
-	import { RightArrowIcon }	from '$icons';
-
-
-	const flipDurationMs = 100;
-	let isNav = true;
-
-	interface ListItem {
-		id: number;
-		url: string;
-	}
+		Filter,
+		Breadcrumb,
+		Links,
+		SearchInPage,
+		LinksList,
+		AuraButton,
+		GroupSites
+	} from "$components";
 
 
+	let isNav		: boolean 		= true;
+	let searchValue	: string 		= "";
+    let openGroups  : Set<string> 	= new Set();
+	let editingGroupId: string | null = null;
 
-	interface GroupedLinks {
-		[id: string]: ListItem[];
-	}
-
-	let groupedLinks: GroupedLinks = {
-		id1: [
-			{ id: 1, url: "https://example.com/icon1" },
-			{ id: 2, url: "https://example.com/icon2" }
-		],
-		id2: [
-			{ id: 3, url: "https://example.com/icon3" },
-			{ id: 4, url: "https://example.com/icon4" }
-		],
-		id3: [
-			{ id: 5, url: "https://example.com/icon5" },
-			{ id: 6, url: "https://example.com/icon6" }
+	const nav = {
+		active	: 'Sitios',
+		actions	: [
+			{ name: 'Inicio', 		url: '/home' },
+			{ name: 'Dashboard', 	url: '/dashboard' },
+			{ name: 'Navegadores', 	url: '/navigators' },
 		]
-	};
+	}
 
 
-	const handleConsiderPro = (env: CustomEvent<DndEvent<ListItem>>) => {
-		const { items, info } = env.detail;
-		console.log("🚀 ~ items:", items)
-		console.log("🚀 ~ info:", info)
+    type CardType = {
+        id          : string;
+        title       : string;
+        description : string;
+        imageUrl    : string;
+    };
 
-		const sourceListId = info?.id; // Verifica que source exista
-		if (sourceListId && groupedLinks[sourceListId]) {
-			groupedLinks[sourceListId] = items;
+
+    type GroupType = {
+        id      : string;
+        name    : string;
+        cards   : CardType[];
+    };
+
+
+    let groups: GroupType[] = [
+        {
+            id      : "group0",
+            name    : "Sin agrupar",
+            cards   : [
+                {
+                    id: "0",
+                    title: "Task 1",
+                    description: "Complete the first task",
+                    imageUrl: "https://picsum.photos/200/150?random=1"
+                },
+                {
+                    id: "-1",
+                    title: "Task 2",
+                    description: "Review the documentation",
+                    imageUrl: "https://picsum.photos/200/150?random=2"
+                },
+            ]
+        },
+        {
+            id: "group1",
+            name: "To Do",
+            cards: [
+                {
+                    id: "1",
+                    title: "Task 1",
+                    description: "Complete the first task",
+                    imageUrl: "https://picsum.photos/200/150?random=1"
+                },
+                {
+                    id: "2",
+                    title: "Task 2",
+                    description: "Review the documentation",
+                    imageUrl: "https://picsum.photos/200/150?random=2"
+                },
+            ]
+        },
+        {
+            id: "group2",
+            name: "In Progress",
+            cards: [
+                {
+                    id: "3",
+                    title: "Task 3",
+                    description: "Working on features",
+                    imageUrl: "https://picsum.photos/200/150?random=3"
+                },
+                {
+                    id: "4",
+                    title: "Task 4",
+                    description: "Testing components",
+                    imageUrl: "https://picsum.photos/200/150?random=4"
+                },
+            ]
+        },
+        {
+            id: "group3",
+            name: "Done",
+            cards: [
+                {
+                    id: "5",
+                    title: "Task 5",
+                    description: "Completed task",
+                    imageUrl: "https://picsum.photos/200/150?random=5"
+                },
+                {
+                    id: "6",
+                    title: "Task 5",
+                    description: "Completed task",
+                    imageUrl: "https://picsum.photos/200/150?random=5"
+                },
+                {
+                    id: "7",
+                    title: "Task 5",
+                    description: "Completed task",
+                    imageUrl: "https://picsum.photos/200/150?random=5"
+                },
+                {
+                    id: "8",
+                    title: "Task 5",
+                    description: "Completed task",
+                    imageUrl: "https://picsum.photos/200/150?random=5"
+                },
+                {
+                    id: "9",
+                    title: "Task 5",
+                    description: "Completed task",
+                    imageUrl: "https://picsum.photos/200/150?random=5"
+                },
+                {
+                    id: "10",
+                    title: "Task 5",
+                    description: "Completed task",
+                    imageUrl: "https://picsum.photos/200/150?random=5"
+                },
+                {
+                    id: "11",
+                    title: "Task 5",
+                    description: "Completed task",
+                    imageUrl: "https://picsum.photos/200/150?random=5"
+                },
+            ]
+        }
+    ];
+
+
+    function handleDndConsider(
+        event   : CustomEvent<{ items: CardType[] }>,
+        groupId : string
+    ): void {
+        groups.forEach( group => openGroups.add( group.id ));
+        openGroups = openGroups;
+
+        dragAndDropLinks( event, groupId );
+    };
+
+
+    function dragAndDropLinks(
+        event   : CustomEvent<{ items: CardType[] }>,
+        groupId : string
+    ): void {
+        const targetGroup = groups.find(( group ) => group.id === groupId );
+
+        if ( targetGroup ) {
+            targetGroup.cards = event.detail.items;
+            groups = groups;
+        }
+    }
+
+
+    const handleDndFinalize = (
+        event   : CustomEvent<{ items: CardType[] }>,
+        groupId : string
+    ): void => dragAndDropLinks( event, groupId );
+
+
+    const handleGroupDndConsider = (
+        event: CustomEvent<{ items: GroupType[] }>
+    ): GroupType[] => groups = event.detail.items;
+
+
+    const handleGroupDndFinalize = (
+        event: CustomEvent<{ items: GroupType[] }>
+    ): GroupType[] => groups = event.detail.items;
+
+
+    const dropTargetStyle = {
+        "background-color"  : "rgba(0, 102, 160, 0.2)",
+        "border-color"      : "rgba(0, 0, 0, 0.1)",
+        "border-radius"     : "8px",
+        "transition"        : "all 0.3s ease",
+        "padding"           : "5px"
+    }
+
+
+    function toggleGroup( groupId: string ): void {
+        if ( openGroups.has( groupId )) {
+            openGroups.delete( groupId );
+        } else {
+            openGroups.add( groupId );
+        }
+
+        openGroups = openGroups;
+    };
+
+	let isExpanded = false;
+
+	function toggleAllGroups() {
+		isExpanded = !isExpanded;
+
+		if ( isExpanded ) {
+			groups.forEach( group => openGroups.add( group.id ));
+		} else {
+			openGroups.clear();
 		}
-	};
 
-	// Maneja los cambios al finalizar
-	const handleFinalizePro = (env: CustomEvent<DndEvent<ListItem>>) => {
-		const { items, info } = env.detail;
-		console.log("🚀 ~ FINAL items:", items)
-		console.log("🚀 ~ FINALinfo:", info)
-		const sourceListId = info?.id;
-		const targetListId = info.trigger; // Verifica que destination exista
-
-		if (sourceListId && targetListId) {
-			if (sourceListId !== targetListId) {
-				// Actualiza ambas listas si el elemento se movió entre listas
-				groupedLinks[sourceListId] = items;
-				groupedLinks[targetListId] = items;
-			} else {
-				// Actualiza solo la lista de origen si el movimiento fue interno
-				groupedLinks[sourceListId] = items;
-			}
-		}
-	};
-
-	let links: ListItem[] = [
-		{ id: 1, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 2, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 3, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 4, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 5, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 6, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 7, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 8, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 9, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 10, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-	];
-	let links2: ListItem[] = [
-		{ id: 11, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 12, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 13, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 14, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 15, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 16, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 17, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 18, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 19, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 20, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-	];
-	let links3: ListItem[] = [
-		{ id: 21, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 22, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 23, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 24, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 25, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 26, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 27, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 28, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 29, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-		{ id: 30, url: "https://lordicon.com/icons/wired/gradient?q=remove&i=185-trash-bin" },
-	];
-
-	const handleConsider = ( env: CustomEvent<DndEvent<ListItem>> ) =>
-		links = env.detail.items;
-	const handleFinalize = ( env: CustomEvent<DndEvent<ListItem>> ) =>
-		links = env.detail.items;
-
-
-	const handleConsider2 = ( env: CustomEvent<DndEvent<ListItem>> ) =>
-		links2 = env.detail.items;
-	const handleFinalize2 = ( env: CustomEvent<DndEvent<ListItem>> ) =>
-		links2 = env.detail.items;
-
-
-	const handleConsider3 = ( env: CustomEvent<DndEvent<ListItem>> ) =>
-		links3 = env.detail.items;
-	const handleFinalize3 = ( env: CustomEvent<DndEvent<ListItem>> ) =>
-		links3 = env.detail.items;
+		openGroups = openGroups;
+	}
 </script>
 
+
+<SearchInPage />
+
+
 <main class="space-y-2">
+	<div class="flex items-center justify-between">
+		<Breadcrumb { nav } />
 
-	<ol class="breadcrumb space-x-2 variant-glass-surface py-2 justify-center rounded-full items-center w-[60%] sm:w-[25rem]">
-		<li class="crumb"><a class="anchor" href="/home">Inicio</a></li>
-		<li class="crumb-separator" aria-hidden>
-			<RightArrowIcon />
-		</li>
-		<li class="crumb"><a class="anchor" href="/dashboard">Dashboard</a></li>
-		<li class="crumb-separator" aria-hidden>
-			<RightArrowIcon />
-		</li>
-		<li class="crumb"><a class="anchor" href="/navigators">Navegadores</a></li>
-		<li class="crumb-separator" aria-hidden>
-			<RightArrowIcon />
-		</li>
-		<li>Sitios</li>
-	</ol>
-
-	<Filter bind:isNav />
-
-	<Accordion spacing='space-y-2'>
-		<AccordionItem open regionControl="variant-glass-primary" padding='py-2 px-4' rounded="rounded-full">
-			<svelte:fragment slot="lead">🚀</svelte:fragment>
-
-			<svelte:fragment slot="summary">
-				<div class="flex justify-between items-center">
-					Algo así se llama
-				</div>
-			</svelte:fragment>
-			<svelte:fragment slot="content">
-				<div
-					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
-					use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-					on:consider={handleConsider}
-					on:finalize={handleFinalize}
-				>
-					{#each links as item (item.id)}
-						<div animate:flip={{ duration: flipDurationMs }}>
-							<Links url={item.url} target={`target-${item.id}`} />
-						</div>
-					{/each}
-				</div>
-			</svelte:fragment>
-		</AccordionItem>
-		<AccordionItem open regionControl="variant-glass-primary" padding='py-2 px-4' rounded="rounded-full">
-			<svelte:fragment slot="lead">🚀</svelte:fragment>
-
-			<svelte:fragment slot="summary">
-				<div class="flex justify-between items-center">
-					Algo así se llama
-				</div>
-			</svelte:fragment>
-			<svelte:fragment slot="content">
-				<div
-					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
-					use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-					on:consider={handleConsider}
-					on:finalize={handleFinalize}
-				>
-					{#each links as item (item.id)}
-						<div animate:flip={{ duration: flipDurationMs }}>
-							<Links url={item.url} target={`target-${item.id}`} />
-						</div>
-					{/each}
-				</div>
-			</svelte:fragment>
-		</AccordionItem>
-		<AccordionItem open regionControl="variant-glass-primary" padding='py-2 px-4' rounded="rounded-full">
-			<svelte:fragment slot="lead">🚀</svelte:fragment>
-
-			<svelte:fragment slot="summary">
-				<div class="flex justify-between items-center">
-					Algo así se llama
-				</div>
-			</svelte:fragment>
-			<svelte:fragment slot="content">
-				<div
-					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
-					use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-					on:consider={handleConsider}
-					on:finalize={handleFinalize}
-				>
-					{#each links as item (item.id)}
-						<div animate:flip={{ duration: flipDurationMs }}>
-							<Links url={item.url} target={`target-${item.id}`} />
-						</div>
-					{/each}
-				</div>
-			</svelte:fragment>
-		</AccordionItem>
-	</Accordion>
-
-
-	<!-- {#each Object.entries(groupedLinks) as [listId, items]}
-		<div>
-			<h3>{listId}</h3>
-			<div
-				class="dnd-container"
-				use:dndzone={{ items, flipDurationMs: 150, dropTargetStyle: {} }}
-				id={listId}
-				on:consider={handleConsiderPro}
-				on:finalize={handleFinalizePro}
+		<div class="flex items-center gap-4">
+			<AuraButton
+				variant="p-1"
+				onClick={toggleAllGroups}
 			>
-				{#each items as item (item.id)}
-					<div>{item.url}</div>
-				{/each}
-			</div>
-		</div>
-	{/each} -->
-
-	<!-- <div class="variant-glass-primary p-5 space-y-3 rounded-lg">
-		<header class="flex">
-			<span>🚀</span>
-
-			<p class="flex justify-between items-center">
-				Algo así se llama
-			</p>
-		</header>
-
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
-			use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-			on:consider={handleConsider}
-			on:finalize={handleFinalize}
-		>
-			{#each links as item (item.id)}
-				<div animate:flip={{ duration: flipDurationMs }}>
-					<Links url={item.url} target={`target-${item.id}`} />
-				</div>
-			{/each}
-
+				<span class="transform transition-all duration-300">
+					{#if isExpanded}
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="transform transition-all duration-300"><path fill="currentColor" d="M2 5h0v14h0zM22 5h0v14h0z"><animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s" values="M2 5h0v14h0zM22 5h0v14h0z;M2 5h3v14h-3zM22 5h-3v14h3z"/></path><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="72" stroke-dashoffset="72" d="M12 5h9c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-18c-0.55 0 -1 -0.45 -1 -1v-12c0 -0.55 0.45 -1 1 -1Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="72;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M12 15v-6"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s" values="8;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 9l3 3M12 9l-3 3"><animate fill="freeze" attributeName="stroke-dashoffset" begin="1.1s" dur="0.2s" values="6;0"/></path></g></svg>
+					{:else}
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="transform transition-all duration-300"><path fill="currentColor" d="M2 5h0v14h0zM22 5h0v14h0z"><animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s" values="M2 5h0v14h0zM22 5h0v14h0z;M2 5h3v14h-3zM22 5h-3v14h3z"/></path><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="72" stroke-dashoffset="72" d="M12 5h9c0.55 0 1 0.45 1 1v12c0 0.55 -0.45 1 -1 1h-18c-0.55 0 -1 -0.45 -1 -1v-12c0 -0.55 0.45 -1 1 -1Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="72;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M12 9v6"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s" values="8;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 15l3 -3M12 15l-3 -3"><animate fill="freeze" attributeName="stroke-dashoffset" begin="1.1s" dur="0.2s" values="6;0"/></path></g></svg>
+					{/if}
+				</span>
+			</AuraButton>
+			<Filter bind:isNav />
 		</div>
 	</div>
 
-	<div class="variant-glass-primary p-5 space-y-3 rounded-lg">
-		<header class="flex">
-			<span>🚀</span>
+	<!-- <input
+		type	= "text"
+		id		= "nav"
+		class	= "input input-bordered w-full"
+		bind:value={ searchValue }
+	/>
 
-			<p class="flex justify-between items-center">
-				Algo así se llama
-			</p>
-		</header>
+	{#if searchValue.length > 0}
+	Hola 
+	{:else}
+	no
+	{/if} -->
 
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
-			use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-			on:consider={handleConsider2}
-			on:finalize={handleFinalize2}
-		>
-			{#each links2 as item (item.id)}
-				<div animate:flip={{ duration: flipDurationMs }}>
-					<Links url={item.url} target={`target-${item.id}`} />
-				</div>
-			{/each}
-
-		</div>
-	</div>
-
-	<div class="variant-glass-primary p-5 space-y-3 rounded-lg">
-		<header class="flex">
-			<span>🚀</span>
-
-			<p class="flex justify-between items-center">
-				Algo así se llama
-			</p>
-		</header>
-
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-5 sm:gap-2 md:gap-3 lg:gap-3 px-2 2xl:px-0"
-			use:dndzone={{ items: links, flipDurationMs, dropTargetStyle: {} }}
-			on:consider={handleConsider3}
-			on:finalize={handleFinalize3}
-		>
-			{#each links3 as item (item.id)}
-				<div animate:flip={{ duration: flipDurationMs }}>
-					<Links url={item.url} target={`target-${item.id}`} />
-				</div>
-			{/each}
-
-		</div>
-	</div> -->
-</main>
-
-
-<!-- <button
-	class		= "btn p-0"
-	on:click	= {(event) => {
-		event.stopPropagation();
-	}}
->
-	<img
-		src     = "/icons/plus-60.apng"
-		alt     = "add"
-		class   = 'w-7 h-7'
+	<div
+		class		= "grid gap-2"
+		use:dndzone = {{
+			items                   : groups,
+			dragDisabled            : false,
+			dropFromOthersDisabled  : true,
+			flipDurationMs          : 300,
+			type                    : "group",
+			dropTargetStyle
+		}}
+		on:consider = { handleGroupDndConsider }
+		on:finalize = { handleGroupDndFinalize }
 	>
-</button> -->
+		{#each groups as group ( group.id )}
+			<div
+				class="grid gap-2"
+				animate:flip={{ duration: 300 }}
+			>
+				<div
+					tabindex        = "0"
+					role            = "button"
+					aria-label      = {`Toggle group ${group.name}`}
+					aria-expanded   = { openGroups.has( group.id ) }
+					on:click        = {() => !editingGroupId && toggleGroup( group.id )}
+					on:keydown      = {() => !editingGroupId && toggleGroup( group.id )}
+				>
+					{#if group.id !== 'group0'}
+						<GroupSites 
+							{group} 
+							{openGroups} 
+							on:editModeChange={(e) => {
+								editingGroupId = e.detail ? group.id : null;
+							}}
+						/>
+					{:else}
+						<div class="grid w-full">
+							<hr class="w-full mt-5 mb-3">
+
+							<div class="flex items-center justify-between">
+								<h2 class="text-xl text-sky-500">{group.name}</h2>
+								<Filter bind:isNav />
+							</div>
+						</div>
+					{/if}
+				</div>
+
+				{#if openGroups.has( group.id )}
+					<div
+						transition:slide={{ duration: 300 }}
+						class="pl-2"
+					>
+						<div
+							class="gap-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 h-auto min-h-12"
+							use:dndzone={{
+								items                   : group.cards,
+								dragDisabled            : false,
+								dropFromOthersDisabled  : false,
+								flipDurationMs          : 300,
+								type                    : "card",
+								dropTargetStyle
+							}}
+							on:consider={(e) => handleDndConsider( e, group.id )}
+							on:finalize={(e) => handleDndFinalize( e, group.id )}
+						>
+							{#each group.cards as card (card.id)}
+								<div animate:flip={{ duration: 300 }}>
+									{#if isNav}
+										<Links id={ card.id } />
+									{:else}
+										<LinksList id={ card.id } />
+									{/if}
+								</div>
+							{:else}
+								No hay links
+							{/each}
+						</div>
+					</div>
+				{/if}
+			</div>
+		{:else}
+			No hay grupos
+		{/each}
+	</div>
+</main>

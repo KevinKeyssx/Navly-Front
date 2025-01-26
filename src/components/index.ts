@@ -13,6 +13,10 @@ export { default as Navigator }     from './Navigator.svelte';
 export { default as Preview }       from './Preview.svelte';
 export { default as Previewer }     from './Previewer.svelte';
 export { default as Snow }          from './Snow.svelte';
+export { default as Breadcrumb }    from './Breadcrumb.svelte';
+export { default as SearchInPage }  from './SearchInPage.svelte';
+export { default as LinksList }  	from './LinksList.svelte';
+export { default as GroupSites }  	from './Sites/GroupSites.svelte';
 
 //Buttons
 export { default as AuraButton }        from './Buttons/AuraButton.svelte';

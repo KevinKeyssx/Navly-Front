@@ -6,7 +6,7 @@
 
 
 <button
-    class    = { `btn btn-icon ${variant}` }
+    class    = { `btn ${variant}` }
     on:click = { onClick }
     disabled = { disabled }
 >
