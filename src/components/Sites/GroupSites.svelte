@@ -54,7 +54,7 @@
 			bind:this={inputElement}
 			bind:value={group.name}
 			on:keydown={(e) => e.key === 'Enter' && (editMode = false)}
-			class=" text-xl font-bold bg-transparent text-sky-500 ring-0 focus:outline-none active:ring-0 transition duration-300 border-none w-full rounded-full"
+			class=" text-xl font-bold bg-transparent text-sky-500 ring-0 focus:outline-none active:ring-0 transition duration-300 border-none w-full rounded-full h-8"
 		/>
 	{/if}
 

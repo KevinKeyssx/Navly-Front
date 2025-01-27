@@ -11,7 +11,7 @@
 	const modal = {
 		...confirmModal,
 		title	: 'Confirmar eliminación',
-		body	: '¿Estás seguro de que deseas eliminar este grupo? Se eliminarán todos los sitios asociados.',
+		body	: '¿Estás seguro de que deseas eliminar este Link?',
 		meta	: 'delete',
 	}
 
@@ -197,7 +197,7 @@
             spacing     = 'gap-0.5'
         >
             <svelte:fragment slot="empty">
-                <StartEmptyIcon />
+                <StarEmptyIcon />
             </svelte:fragment>
 
             <svelte:fragment slot="half">

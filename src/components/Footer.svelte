@@ -6,7 +6,11 @@
     <div class="container mx-auto px-4 lg:px-16">
         <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
             <div class="text-center md:text-left">
-                <h1 class="text-2xl font-bold text-white mb-2 uppercase">Navly</h1>
+				<div class="flex items-center justify-center md:justify-start gap-2">
+					<img src="/navly-logo.png" alt="Logo" class="w-12 h-12">
+
+					<h1 class="text-2xl font-bold text-white mb-1 uppercase">Navly</h1>
+				</div>
 
                 <p class="text-sm">
                     Simplificando la navegación, conectando sitios web de forma rápida y eficiente.
