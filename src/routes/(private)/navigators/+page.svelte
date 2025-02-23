@@ -63,7 +63,7 @@
 
 	<DragDropMove
 		links			= {links}
-		componentStyle	= {'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-2 md:gap-3 lg:gap-2 px-2 2xl:px-0'}
+		componentStyle	= {'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 sm:gap-2 md:gap-3  px-2 2xl:px-0'}
 		animateStyle	= {`${isNav ? 'variant-glass-primary rounded-full card-hover py-2 px-4 flex' : ''}`}
 	>
 		{#if isNav}

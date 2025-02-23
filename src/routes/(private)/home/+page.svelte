@@ -1,4 +1,5 @@
 <script>
+    import { Breadcrumb } from '$components';
 	import WebsiteCard from '$components/Sites/WebsiteCard.svelte';
 	import { Filter, Search } from 'lucide-svelte';
     import { fade, slide } from 'svelte/transition';
@@ -31,10 +32,21 @@
         
         return matchesSearch && matchesCategory && matchesStars;
     });
+
+    const nav = {
+		active	: 'Inicio',
+		actions	: [
+			{ name: 'Dashboard', 	url: '/dashboard' },
+			{ name: 'Navegadores', 	url: '/navigators' },
+		]
+	}
 </script>
 
-<main class="container mx-auto px-4 py-8">
+<main class="container mx-auto px-4">
     <div class="mb-8 space-y-4">
+        <div class="flex items-center justify-between">
+            <Breadcrumb { nav } />
+        </div>
         <!-- Barra de búsqueda -->
         <div class="relative">
             <input

@@ -14,14 +14,14 @@
 			class	= "rounded-full w-8 h-8"
 		>
 
-		<div class="grid -space-y-1 break-words">
-			<div class="flex items-center justify-between">
+		<div class="grid break-words">
+			<div class="flex items-start justify-between">
 
-				<span class="font-semibold break-all">Skeleton {id}</span>
+				<span class="font-semibold break-all text-sky-500">Skeleton {id}</span>
 
 				<button
 					on:click	= {() => {}}
-					class		= "hover:scale-110"
+					class		= "hover:scale-110 mt-0.5"
 				>
 					<DeleteIcon />
 				</button>
@@ -29,9 +29,9 @@
 
 			<a
 				href="https://www.skeleton.com"
-				class="text-[12px] text-sky-500 font-semibold underline break-all"
+				class="text-[13px] text-white font-semibold underline break-all"
 			>
-				www.skeleton.com/fasdfasdf/asfefjskljf/asdfsdf
+				www.skeleton.com/fasdfas
 			</a>
 		</div>
 	</a>

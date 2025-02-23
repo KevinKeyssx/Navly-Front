@@ -25,6 +25,6 @@
 
 <div class="flex flex-col min-h-screen overflow-auto">
 	<Aura />
-	<Snow />
+	<!-- <Snow /> -->
 	<slot />
 </div>

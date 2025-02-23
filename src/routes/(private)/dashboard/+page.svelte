@@ -2,7 +2,7 @@
     import { ConicGradient, type ConicStop } from "@skeletonlabs/skeleton";
 
     import { goto }         from "$app/navigation";
-    import { Links, Title } from '$components'
+    import { Breadcrumb, Links, Title } from '$components'
 
     let stats = {
         totalUrls       : 123,
@@ -99,7 +99,18 @@
             },
         ]
     }
+
+    const nav = {
+		active	: 'Dashboard',
+		actions	: [
+			{ name: 'Inicio', 	url: '/home' },
+		]
+	}
 </script>
+
+<div class="flex items-center justify-between">
+    <Breadcrumb { nav } />
+</div>
 
 <Title title="Bienvenido a Navly" />
 
@@ -148,7 +159,7 @@
         <!-- Carousel -->
         <div bind:this={elemMovies} class="snap-x snap-mandatory scroll-smooth flex gap-2 pb-2 overflow-x-auto">
             {#each moviesData.movies as movie}
-                <Links url={movie.url} target={`target-${movie.name}`} />
+                <Links id={movie.name} url={movie.url} target={`target-${movie.name}`} />
             {/each}
         </div>
         <!-- Button-Right -->

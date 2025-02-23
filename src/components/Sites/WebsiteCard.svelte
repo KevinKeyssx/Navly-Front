@@ -14,7 +14,7 @@
 </script>
 
 <div 
-    class="variant-glass-secondary  rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+    class="variant-ghost-primary rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
     transition:fade
 >
     <div class="relative">
