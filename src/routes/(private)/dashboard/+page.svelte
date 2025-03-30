@@ -116,32 +116,34 @@
 
 <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
     <button
-        class="btn grid justify-start card card-hover p-5 gap-1  variant-glass-secondary"
+        class="btn flex flex-col card card-hover p-5 gap-1 variant-soft-secondary w-full"
         on:click={() => goto('/navigators')}
     >
-        <h2 class="text-xl font-semibold">🚀 Navegadores</h2>
-        <p class="text-start text-sky-500">Total: {stats.totalNavigators}</p>
+        <h2 class="text-xl font-semibold text-start w-full">🚀 Navegadores</h2>
+        <div class="w-full flex justify-between items-center">
+            <p class="text-start text-sky-500">Total: {stats.totalNavigators}</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="36" stroke-dashoffset="36" d="M13 4l7 0c0.55 0 1 0.45 1 1v14c0 0.55 -0.45 1 -1 1h-7"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="36;0"/></path><path stroke-dasharray="14" stroke-dashoffset="14" d="M3 12h11.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="14;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M14.5 12l-3.5 -3.5M14.5 12l-3.5 3.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="6;0"/></path></g></svg>
+        </div>
     </button>
 
     <button
-        class="btn grid justify-start card card-hover p-5 gap-1 variant-glass-tertiary"
-        on:click={() => goto('/sites')}
+        class="grid justify-start card card-hover p-5 gap-1 variant-soft-tertiary"
     >
         <h2 class="text-xl font-semibold">🌐 Sitios</h2>
         <p class="text-start text-sky-500">Total: {stats.totalCategories}</p>
     </button>
 
-    <button class="btn grid justify-start card card-hover p-5 gap-1  variant-glass-warning brightness-80">
+    <button class="grid justify-start card card-hover p-5 gap-1  variant-soft-primary brightness-80">
         <h2 class="text-xl font-semibold">🔗 URLs</h2>
         <p class="text-start text-sky-500">Total: {stats.totalUrls}</p>
     </button>
 
-    <button class="btn grid justify-start card card-hover p-5 gap-1 variant-glass-error">
+    <button class="grid justify-start card card-hover p-5 gap-1 variant-soft-error">
         <h2 class="text-xl font-semibold">💖 Favoritos</h2>
         <p class="text-start text-red-500">Total: {stats.totalCategories}</p>
     </button>
 
-    <button class="btn grid justify-start card card-hover p-5 gap-1 variant-glass-warning">
+    <button class="grid justify-start card card-hover p-5 gap-1 variant-soft-warning">
         <h2 class="text-xl font-semibold">⭐ Estrellas</h2>
         <p class="text-start text-amber-500">Total: {stats.totalCategories}</p>
     </button>

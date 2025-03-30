@@ -301,7 +301,7 @@
 						class="pl-2"
 					>
 						<div
-							class="gap-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 h-auto min-h-12"
+							class={`gap-2 grid grid-cols-1 ${ isNav ? 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6' : 'sm:grid-cols-2' }  h-auto min-h-12`}
 							use:dndzone={{
 								items                   : group.cards,
 								dragDisabled            : false,

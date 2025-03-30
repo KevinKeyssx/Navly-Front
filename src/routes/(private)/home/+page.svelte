@@ -37,7 +37,6 @@
 		active	: 'Inicio',
 		actions	: [
 			{ name: 'Dashboard', 	url: '/dashboard' },
-			{ name: 'Navegadores', 	url: '/navigators' },
 		]
 	}
 </script>
