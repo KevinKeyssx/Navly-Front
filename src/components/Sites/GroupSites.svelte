@@ -45,7 +45,7 @@
 </script>
 
 
-<div class="flex gap-2 py-1 px-5 variant-glass-primary rounded-full hover:brightness-110 transition-all items-center justify-between">
+<div class="flex gap-2 py-1 px-5 variant-ghost-primary rounded-full hover:brightness-110 transition-all items-center justify-between">
 	{#if !editMode}
 		<h2 class="text-xl text-sky-500">{ group.name }</h2>
 	{:else}

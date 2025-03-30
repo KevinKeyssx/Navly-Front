@@ -225,7 +225,7 @@
 </script>
 
 
-<SearchInPage />
+<!--<SearchInPage />-->
 
 
 <main class="space-y-2">
@@ -245,22 +245,10 @@
 					{/if}
 				</span>
 			</AuraButton>
-			<Filter bind:isNav />
+
+            <Filter bind:isNav />
 		</div>
 	</div>
-
-	<!-- <input
-		type	= "text"
-		id		= "nav"
-		class	= "input input-bordered w-full"
-		bind:value={ searchValue }
-	/>
-
-	{#if searchValue.length > 0}
-	Hola 
-	{:else}
-	no
-	{/if} -->
 
 	<div
 		class		= "grid gap-2"
@@ -278,7 +266,6 @@
 		{#each groups as group ( group.id )}
 			<div
 				class="grid gap-2"
-				animate:flip={{ duration: 300 }}
 			>
 				<div
 					tabindex        = "0"
@@ -329,7 +316,7 @@
 							{#each group.cards as card (card.id)}
 								<div animate:flip={{ duration: 300 }}>
 									{#if isNav}
-										<Links id={ card.id } />
+										<Links id={ card.id } scale={false} />
 									{:else}
 										<LinksList id={ card.id } />
 									{/if}

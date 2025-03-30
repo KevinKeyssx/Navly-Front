@@ -21,20 +21,16 @@
 		StarFullIcon,
 		StarEmptyIcon,
 		StarHalfIcon,
-		HeartFullIcon,
-		HeartEmptyIcon
+		HeartEmptyIcon,
 	}       				from "$icons";
 
-    import Preview          from "$components/Preview.svelte";
-    import Previewer        from "$components/Previewer.svelte";
 	import { confirmModal } from "./Sites/modal.config";
-
-
 
 
     export let url      : string = '';
     export let target   : string = '';
-    export let id : string
+    export let id       : string;
+    export let scale    : boolean = true;
 
     let value = { current: 0, max: 5 };
 
@@ -56,12 +52,13 @@
     }
 
 
-
     let isPressed = false;
+
 
     function handleMouseDown() {
         isPressed = true;
     }
+
 
     function handleMouseUp() {
         isPressed = false;
@@ -79,16 +76,9 @@
 	};
 </script>
 
-
-<!-- <a
-    href    = "https://www.skeleton.dev"
-    target  = {'_blank'}
-    class   = "card card_zoom variant-soft-primary cursor-pointer"
-> -->
-
 <div
     id				= { `linkstyle` }
-    class           = "card card_zoom z-0 variant-glass-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} hover:brightness-125"
+    class           = {`card ${ scale ? '': 'card_zoom' } z-0 variant-soft-primary ${isPressed ? 'cursor-grabbing' : 'cursor-grab'} hover:brightness-125`}
     on:mousedown    = { handleMouseDown }
     on:mouseup      = { handleMouseUp }
     on:dblclick     = {() => openInNewTab( 'https://www.skeleton.dev' )}
@@ -113,15 +103,6 @@
             </div>
 
             <div class="card-footer space-y-3 mt-1 content-between grid">
-                <!-- <Preview {url}>
-                    <WebIcon class="transition-all duration-300 transform hover:scale-110"/>
-                </Preview> -->
-                <!-- <div class="btn btn-lg  p-0 [&>*]:pointer-events-none" use:popup={popupHover}>
-                    <WebIcon class="transition-all duration-300 transform hover:scale-110"/>
-
-                    <Previewer {url} {target} />
-                </div> -->
-
                 <div class="grid space-y-3">
 
 					<button

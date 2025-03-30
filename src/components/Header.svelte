@@ -10,8 +10,7 @@
     const session = auth.useSession();
 </script>
 
-
-<header class="variant-glass-surface text-white py-3">
+<header class="variant-soft-surface text-white py-3">
 	<div class="container mx-auto flex justify-between items-center px-5">
 		<Neon />
 

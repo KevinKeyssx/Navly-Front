@@ -10,10 +10,9 @@
         url: '',
         image: 'https://res.cloudinary.com/dbgzsikcs/image/upload/v1725851398/sample/479e9fc8-01d8-4f5e-8848-4cbdc55da820.avif'
     };
-
 </script>
 
-<div 
+<div
     class="variant-ghost-primary rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
     transition:fade
 >
